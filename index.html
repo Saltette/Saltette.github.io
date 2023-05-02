@@ -3,7 +3,20 @@
     <div id="phase" style="background-color:#aaa; margin:auto; width:80%;">
       <h1 id="headline">Kalos Timers p2-1</h1>
       <p>
-        HP:
+        <button class="button1" onclick="startPhase(3)">
+          <p>p2 Start</p>
+        </button>
+      </p>
+      <p>Systems:<b id="systemsOnline">--</b>
+        <button class="button2" onclick="incSystems()">
+          <p>+</p>
+        </button>
+        <button class="button2" onclick="decSystems()">
+          <p>-</p>
+        </button>
+      </p>
+      <p>
+        HP: 
         <button class="button2" onclick="changePhase(3)">
           <p>0% - 50%</p>
         </button>
@@ -12,6 +25,15 @@
         </button>
         <button class="button2" onclick="changePhase(1)">
           <p>100%</p>
+        </button>
+      </p>
+      <p>
+        Test: 
+        <button class="button1" onclick="phaseTest()">
+          <p>Start</p>
+        </button>
+        <button class="button1" onclick="failTest()">
+          <p>Fail</p>
         </button>
       </p>
     </div>
@@ -32,7 +54,7 @@
     <div class="item1" id="breathBox" style="background-color:#ccc;">
       <h2 id="breathTimer">--</h2>
       <button class="button1" onclick="breathTimer()"> 
-        <p>Breath</p>
+        <p>Laser</p>
       </button>
     </div>
     <div class="item1" id="diveBox" style="background-color:#ccc;">
@@ -43,26 +65,24 @@
     </div>
     <div class="item1" id="fmaBox" style="background-color:#ccc;">
       <h2 id="fmaTimer">--</h2>
-      <button class="button1" onclick="fmaTimer(150)">
+      <button class="button1" onclick="fmaMaxSystemsCheck(); fmaTimer(150); incSystems()">
         <p>FMA</p>
       </button>
       <button class="button2" onclick="fmaAdd10()">
-        <p id="fmaAdd10">+10s</p>
+        <p>10s bind</p>
       </button>
       <button class="button2" onclick="fmaAdd15()">
-        <p id="fmaAdd15">+15s</p>
-      </button>
-      <button class="button2" onclick="fmaAdd50()">
-        <p id="fmaAdd50">+Test</p>
-      </button>
-      <button class="button2" onclick="fmaSub50()">
-        <p id="fmaSub50">-Test</p>
+        <p>15s bind</p>
       </button>
     </div>
     <div class="item1" id="systemFailBox" style="background-color:#ccc;">
       <h2 id="systemFailTimer">--</h2>
-      <button class="button1" onclick="systemFailTimer()">
-        <p>Full Systems</p>
+      
+      <button class="button1" onclick="systemCleanse()">
+        <p>Cleanse</p>
+      </button>
+      <button class="button2" onclick="systemFailTimer(60)">
+        <p>Reset System Activation</p>
       </button>
       <button class="button2" onclick="systemFailReset()">
         <p>Cancel</p>
@@ -77,6 +97,7 @@
   h3 {text-align: center; font-size: 25;}
   div {text-align: center; padding: 10px;}
   p {text-align: center;}
+  b {padding: 10px}
   .item1 {border: 3px solid transparent; display: block; align-items: center; justify-content: center; height: 152px;}
   .item2 {border: 3px solid transparent; margin: auto; width:20%; display: block; align-items: center; justify-content: center; height: 152px;}
   .grid-container1 {margin: auto; width:80%; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
@@ -105,29 +126,138 @@
 </style>
 
 <script>
+  const warningBomb = 3;
+  const warningBreath = 5;
+  const warningDive = 5;
+  const warningFMA = 20;
+  const warningSystemFail = 20;
+  const maxSystems = 4;
+  const minSystems = 0;
+  const systemCooldown = 60;
+  const bombCooldown = 10;
+  const diveCooldown = 20;
+  const fmaCooldown = 150;
+
   var phase = 1;
+
+  var bombCountdown;
+  var breathCountdown;
+  var diveCountdown;
+  var fmaCountdown;
+  var systemFailCountdown;
+
+  var bombSec;
+  var breathSec;
+  var diveSec;
+  var fmaSec = fmaCooldown;
+  var systemFailSec = systemCooldown;
+
+  var numSystemsOnline = 0;
+  var phaseFMASec = 0;
+  var phaseSystemSec = 0;
+  var phaseCountdown;
+  var phaseSec = 0;
+  
+
+
+
+
+
+
   function changePhase(num) {
     phase = num;
     document.getElementById('headline').innerHTML="Kalos Timers p2-"+phase;
   }
 
-  var bombCountdown;
-  var systemFailCountdown;
-  var breathCountdown;
-  var diveCountdown;
-  var fmaCountdown;
+  function startPhase() {
+    bombTimer();
+    fmaTimer(fmaCooldown);
+    systemFailTimer(systemCooldown);
+    numSystemsOnline = 0;
+    document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+  }
 
-  var bombSec;
-  var systemFailSec;
-  var breathSec;
-  var diveSec;
-  var fmaSec = 150;
+  function incSystems () {
+    if (numSystemsOnline != maxSystems) {
+      numSystemsOnline += 1;
+    }
+    document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+    checkWarningNumSystems();
+  }
+  
+  function decSystems () {
+    if (numSystemsOnline >= 1) {
+      numSystemsOnline -= 1;
+    }
+    document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+    checkWarningNumSystems();
+  }
 
-  var warningBomb = 3;
-  var warningBreath = 5;
-  var warningDive = 5;
-  var warningFMA = 20;
-  var warningSystemFail = 20;
+  function checkWarningNumSystems () {
+    if (numSystemsOnline == maxSystems) {
+      document.getElementById("systemsOnline").style.color = 'red';
+    } else {
+      document.getElementById("systemsOnline").style.color = 'black';
+    }
+  }
+
+  function phaseTest(){
+    phaseSec = 50;
+    clearInterval(phaseCountdown);
+    phaseCountdown = setInterval(function(){
+        phaseSec--;
+        if (phaseSec <= 0) {
+          clearInterval(phaseCountdown);
+          phaseFMASec = 0;
+          phaseSystemSec = 0;
+        }
+      }, 1000);
+
+    clearInterval(fmaCountdown);
+    phaseFMASec = fmaSec;
+    fmaSec += 50;
+    fmaTimer(fmaSec);
+    checkWarningFMA();
+
+    clearInterval(systemFailCountdown);
+    phaseSystemSec = systemFailSec;
+    systemFailSec += 50;
+    systemFailTimer(systemFailSec);
+    checkWarningSystemFail();
+
+    if (phase <= 2){
+      changePhase(phase+1);
+    }
+  }
+
+  function failTest() {
+    if (phaseSec > 0) {
+      clearInterval(fmaCountdown);
+      if (phaseFMASec==0) {
+        document.getElementById('fmaTimer').innerHTML = fmaSec;
+      }
+      fmaTimer(phaseFMASec)
+      checkWarningFMA();
+      phaseFMASec = 0;
+
+      clearInterval(systemFailCountdown);
+      if (phaseSystemSec==0) {
+        systemFailSec = 0;
+        document.getElementById('systemFailTimer').innerHTML = systemFailSec;
+      }
+      systemFailTimer(phaseSystemSec);
+      checkWarningSystemFail();
+      phaseSystemSec = 0;
+
+      if (phase >= 2){
+        changePhase(phase-1);
+      }
+      clearInterval(phaseCountdown);
+      phaseFMASec = 0;
+      phaseSystemSec = 0;
+      phaseSec = 0;
+    }
+  }
 
 
 
@@ -139,33 +269,33 @@
 
 
 
+
+  function checkWarningBomb() {
+    if (bombSec <= warningBomb) {
+      document.getElementById("bombTimer").style.color = 'red';
+    }
+    else {
+      document.getElementById("bombTimer").style.color = 'black';
+    }
+  }
   function bombTimer(){
-    bombSec = 10;
+    bombSec = bombCooldown;
     document.getElementById('bombTimer').innerHTML = bombSec;
-    document.getElementById("bombTimer").style.color = 'black';
-    document.getElementById("bombBox").style.border = '3px solid transparent';
+    checkWarningBomb();
     clearInterval(bombCountdown);
     bombCountdown = setInterval(function(){
       bombSec--;
       document.getElementById('bombTimer').innerHTML = bombSec;
-      if (bombSec <= warningBomb) {
-        document.getElementById("bombTimer").style.color = 'red';
-        document.getElementById("bombBox").style.border = '3px solid red';
-      }
-      if (bombSec > warningBomb) {
-        document.getElementById("bombTimer").style.color = 'black';
-        document.getElementById("bombBox").style.border = '3px solid transparent';
-      }
+      checkWarningBomb();
       if (bombSec <= 0) {
-        bombSec = 10;
+        bombSec = bombCooldown;
       }
     }, 1000);
   }
   function bombReset(){
-    bombSec = 10;
+    bombSec = bombCooldown;
     document.getElementById('bombTimer').innerHTML = "--";
-    document.getElementById("bombTimer").style.color = 'black';
-    document.getElementById("bombBox").style.border = '3px solid transparent';
+    checkWarningBomb();
     clearInterval(bombCountdown);
   }
 
@@ -178,7 +308,16 @@
 
 
 
-
+  function checkWarningBreath() {
+    if (breathSec <= warningBreath) {
+      document.getElementById("breathTimer").style.color = 'red';
+      document.getElementById("breathBox").style.border = '3px solid red';
+    }
+    else {
+      document.getElementById("breathTimer").style.color = 'black';
+      document.getElementById("breathBox").style.border = '3px solid transparent';
+    }
+  }
   function breathTimer(){
     if (phase == 1) {
       breathSec = 60;
@@ -190,16 +329,12 @@
       breathSec = 30;
     }
     document.getElementById('breathTimer').innerHTML = breathSec;
-    document.getElementById("breathTimer").style.color = 'black';
-    document.getElementById("breathBox").style.border = '3px solid transparent';
+    checkWarningBreath();
     clearInterval(breathCountdown);
     breathCountdown = setInterval(function(){
       breathSec--;
       document.getElementById('breathTimer').innerHTML = breathSec;
-      if (breathSec <= warningBreath) {
-        document.getElementById("breathTimer").style.color = 'red';
-        document.getElementById("breathBox").style.border = '3px solid red';
-      }
+      checkWarningBreath();
       if (breathSec <= 0) {
         clearInterval(breathCountdown);
       }
@@ -213,30 +348,33 @@
 
 
 
-function checkWarningDive() {
-  if (diveSec <= warningDive) {
-    document.getElementById("diveTimer").style.color = 'red';
-    document.getElementById("diveBox").style.border = '3px solid red';
+
+
+
+  function checkWarningDive() {
+    if (diveSec <= warningDive) {
+      document.getElementById("diveTimer").style.color = 'red';
+      document.getElementById("diveBox").style.border = '3px solid red';
+    }
+    else {
+      document.getElementById("diveTimer").style.color = 'black';
+      document.getElementById("diveBox").style.border = '3px solid transparent';
+    }
   }
-  else {
-    document.getElementById("diveTimer").style.color = 'black';
-    document.getElementById("diveBox").style.border = '3px solid transparent';
-  }
-}
-  function diveTimer(){
-    diveSec = 20;
-    document.getElementById('diveTimer').innerHTML = diveSec;
-    checkWarningDive();
-    clearInterval(diveCountdown);
-    diveCountdown = setInterval(function(){
-      diveSec--;
+    function diveTimer() {
+      diveSec = diveCooldown;
       document.getElementById('diveTimer').innerHTML = diveSec;
       checkWarningDive();
-      if (diveSec <= 0) {
-        clearInterval(diveCountdown);
-      }
-    }, 1000);
-  }
+      clearInterval(diveCountdown);
+      diveCountdown = setInterval(function(){
+        diveSec--;
+        document.getElementById('diveTimer').innerHTML = diveSec;
+        checkWarningDive();
+        if (diveSec <= 0) {
+          clearInterval(diveCountdown);
+        }
+      }, 1000);
+    }
 
 
 
@@ -260,7 +398,7 @@ function checkWarningDive() {
       document.getElementById("fmaBox").style.background = '#ccc';
     }
   }
-  function fmaTimer(sec){
+  function fmaTimer(sec) {
     fmaSec = sec;
     document.getElementById('fmaTimer').innerHTML = fmaSec;
     checkWarningFMA();
@@ -286,63 +424,58 @@ function checkWarningDive() {
     fmaTimer(fmaSec);
     checkWarningFMA();
   }
-  function fmaAdd50(){
-    clearInterval(fmaCountdown);
-    fmaSec += 50;
-    fmaTimer(fmaSec);
-    checkWarningFMA();
-  }
-  function fmaSub50(){
-    clearInterval(fmaCountdown);
-    if (fmaSec<=50) {
-      fmaSec = 0;
-      document.getElementById('fmaTimer').innerHTML = fmaSec;
-      checkWarningFMA();
-    } else {
-      fmaSec -= 50;
-      fmaTimer(fmaSec);
+  function fmaMaxSystemsCheck() {
+    if (numSystemsOnline == maxSystems-1) {
+        systemFailTimer(systemCooldown);
     }
-      checkWarningFMA();
   }
 
 
+  
 
 
 
+  function checkWarningSystemFail() {
+    if (systemFailSec <= warningSystemFail && numSystemsOnline == maxSystems) {
+      document.getElementById("systemFailTimer").style.color = 'red';
+      document.getElementById("systemFailBox").style.border = '3px solid red';
+      document.getElementById("systemFailBox").style.background = '#F9C3C3';
+    }
+    else {
+      document.getElementById("systemFailTimer").style.color = 'black';
+      document.getElementById("systemFailBox").style.border = '3px solid transparent';
+      document.getElementById("systemFailBox").style.background = '#ccc';
+    }
+  }
 
-  function systemFailTimer(){
-    systemFailSec = 60;
-    var warning = 20;
+  function systemFailTimer(sec){
+    systemFailSec = sec;
     document.getElementById('systemFailTimer').innerHTML = systemFailSec;
-    document.getElementById("systemFailTimer").style.color = 'black';
-    document.getElementById("systemFailBox").style.border = '3px solid transparent';
-    document.getElementById("systemFailBox").style.background = '#ccc';
+    checkWarningSystemFail();
     clearInterval(systemFailCountdown);
     systemFailCountdown = setInterval(function(){
       systemFailSec--;
       document.getElementById('systemFailTimer').innerHTML = systemFailSec;
-      if (systemFailSec <= warning) {
-        document.getElementById("systemFailTimer").style.color = 'red';
-        document.getElementById("systemFailBox").style.border = '3px solid red';
-        document.getElementById("systemFailBox").style.background = '#F9C3C3';
-      }
-      if (systemFailSec > warning) {
-        document.getElementById("systemFailTimer").style.color = 'black';
-        document.getElementById("systemFailBox").style.border = '3px solid transparent';
-        document.getElementById("systemFailBox").style.background = '#ccc';
-      }
+      checkWarningSystemFail();
       if (systemFailSec <= 0) {
+        incSystems();
         clearInterval(systemFailCountdown);
+        systemFailTimer(systemCooldown);
       }
     }, 1000);
   }
   function systemFailReset(){
-    systemFailSec = 60;
+    systemFailSec = systemCooldown;
     document.getElementById('systemFailTimer').innerHTML = "--";
-    document.getElementById("systemFailTimer").style.color = 'black';
-    document.getElementById("systemFailBox").style.border = '3px solid transparent';
-    document.getElementById("systemFailBox").style.background = '#ccc';
+    checkWarningSystemFail();
     clearInterval(systemFailCountdown);
+  }
+  function systemCleanse() {
+    if (numSystemsOnline == maxSystems) {
+      systemFailTimer(systemCooldown);
+    }
+    decSystems();
+    document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
   }
 
   </script>
