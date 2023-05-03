@@ -17,14 +17,17 @@
       </p>
       <p>
         HP: 
+        <button class="button2" onclick="changePhase(4)">
+          <p>0%-25%</p>
+        </button>
         <button class="button2" onclick="changePhase(3)">
-          <p>0% - 50%</p>
+          <p>26%-50%</p>
         </button>
         <button class="button2" onclick="changePhase(2)">
-          <p>75%</p>
+          <p>51%-75%</p>
         </button>
         <button class="button2" onclick="changePhase(1)">
-          <p>100%</p>
+          <p>76%-100%</p>
         </button>
       </p>
       <p>
@@ -134,12 +137,14 @@
   const warningSystemFail = 20;
   const maxSystems = 4;
   const minSystems = 0;
+  const maxPhase = 4;
+  const minPhase = 1;
   const systemCooldown = 60;
   const bombCooldown = 10;
   const diveCooldown = 20;
   const fmaCooldown = 150;
 
-  var phase = 1;
+  var phase;
 
   var bombCountdown;
   var breathCountdown;
@@ -171,6 +176,7 @@
   }
 
   function startPhase() {
+    phase = 1;
     bombTimer();
     fmaTimer(fmaCooldown);
     systemFailTimer(systemCooldown);
@@ -229,7 +235,7 @@
       checkWarningSystemFail();
     }
 
-    if (phase <= 2){
+    if (phase < maxPhase){
       changePhase(phase+1);
     }
   }
@@ -246,7 +252,7 @@
         checkWarningSystemFail();
       }
 
-      if (phase >= 2){
+      if (phase > minPhase){
         changePhase(phase-1);
       }
       clearInterval(phaseCountdown);
@@ -320,7 +326,7 @@
     if (phase == 2) {
       breathSec = 45;
     }
-    if (phase == 3) {
+    if (phase >= 3) {
       breathSec = 30;
     }
     document.getElementById('breathTimer').innerHTML = breathSec;
