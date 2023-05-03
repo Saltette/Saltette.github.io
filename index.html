@@ -38,7 +38,6 @@
         <button class="button1" onclick="failTest()">
           <p>Fail</p>
         </button>
-        <p id="tester"></p>
       </p>
     </div>
   </div>
@@ -243,7 +242,12 @@
   function failTest() {
     if (phaseSec > 0) {
       clearInterval(fmaCountdown);
-      fmaTimer(phaseFMASec);
+      if (phaseFMASec <= 0) {
+        fmaSec = 0;
+        document.getElementById('fmaTimer').innerHTML = fmaSec;
+      } else {
+        fmaTimer(phaseFMASec);
+      }
       checkWarningFMA();
 
       if (numSystemsOnline != maxSystems) {
