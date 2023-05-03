@@ -197,6 +197,7 @@
   function checkWarningNumSystems () {
     if (numSystemsOnline == maxSystems) {
       document.getElementById("systemsOnline").style.color = 'red';
+      document.getElementById("systemFailTimer").style.color = 'red';
     } else {
       document.getElementById("systemsOnline").style.color = 'black';
     }
@@ -430,10 +431,13 @@
 
 
   function checkWarningSystemFail() {
-    if (systemFailSec <= warningSystemFail && numSystemsOnline == maxSystems) {
+    
+    if (numSystemsOnline == maxSystems) {
       document.getElementById("systemFailTimer").style.color = 'red';
-      document.getElementById("systemFailBox").style.border = '3px solid red';
-      document.getElementById("systemFailBox").style.background = '#F9C3C3';
+      if (systemFailSec <= warningSystemFail) {
+        document.getElementById("systemFailBox").style.border = '3px solid red';
+        document.getElementById("systemFailBox").style.background = '#F9C3C3';
+      }
     }
     else {
       document.getElementById("systemFailTimer").style.color = 'black';
