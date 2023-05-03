@@ -448,8 +448,9 @@
 
   function systemFailTimer(sec){
     systemFailSec = sec;
-    document.getElementById('systemFailTimer').innerHTML = systemFailSec;
     checkWarningSystemFail();
+    document.getElementById('systemFailTimer').innerHTML = systemFailSec;
+    
     clearInterval(systemFailCountdown);
     systemFailCountdown = setInterval(function(){
       systemFailSec--;
@@ -474,6 +475,7 @@
       phaseSystemSec = systemCooldown;
     }
     decSystems();
+    checkWarningSystemFail();
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
   }
 
