@@ -181,6 +181,10 @@
     systemFailTimer(systemCooldown);
     numSystemsOnline = 0;
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+    checkWarningBomb();
+    checkWarningFMA();
+    checkWarningNumSystems();
+    checkWarningSystemFail();
   }
 
   function incSystems () {
