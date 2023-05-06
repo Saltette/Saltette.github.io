@@ -142,6 +142,7 @@
   const bombCooldown = 10;
   const diveCooldown = 20;
   const fmaCooldown = 150;
+  const groggyDuration = 20;
 
   var phase;
 
@@ -215,33 +216,33 @@
   }
 
   function phaseTest(){
-    phaseSec = 50;
-    clearInterval(phaseCountdown);
-    phaseCountdown = setInterval(function(){
-        phaseSec--;
-        if (phaseSec <= 0) {
-          clearInterval(phaseCountdown);
-          phaseFMASec = 0;
-          phaseSystemSec = 0;
-        }
-      }, 1000);
-      
-    phaseFMASec = fmaSec;
-    clearInterval(fmaCountdown);
-    fmaSec += 50;
-    fmaTimer(fmaSec);
-    checkWarningFMA();
+    if (phaseSec <= groggyDuration) {
+      phaseSec = 50;
+      clearInterval(phaseCountdown);
+      phaseCountdown = setInterval(function(){
+          phaseSec--;
+          if (phaseSec <= 0) {
+            clearInterval(phaseCountdown);
+            phaseFMASec = 0;
+            phaseSystemSec = 0;
+          }
+        }, 1000);
+        
+      phaseFMASec = fmaSec;
+      clearInterval(fmaCountdown);
+      fmaSec += 50;
+      fmaTimer(fmaSec);
+      checkWarningFMA();
 
-    if (numSystemsOnline != maxSystems) {
       phaseSystemSec = systemFailSec;
       clearInterval(systemFailCountdown);
       systemFailSec += 50;
       systemFailTimer(systemFailSec);
       checkWarningSystemFail();
-    }
 
-    if (phase < maxPhase){
-      changePhase(phase+1);
+      if (phase < maxPhase){
+        changePhase(phase+1);
+      }
     }
   }
 
@@ -256,11 +257,9 @@
       }
       checkWarningFMA();
 
-      if (numSystemsOnline != maxSystems) {
-        clearInterval(systemFailCountdown);
-        systemFailTimer(phaseSystemSec);
-        checkWarningSystemFail();
-      }
+      clearInterval(systemFailCountdown);
+      systemFailTimer(phaseSystemSec);
+      checkWarningSystemFail();
 
       if (phase > minPhase){
         changePhase(phase-1);
