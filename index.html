@@ -186,7 +186,7 @@
     bombTimer();
     fmaTimer(fmaCooldown);
     systemFailTimer(systemCooldown);
-    numSystemsOnline = 0;
+    numSystemsOnline = minSystems;
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
     checkWarningBomb();
     checkWarningFMA();
