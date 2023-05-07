@@ -30,7 +30,7 @@
           <p>76%-100%</p>
         </button>
       </p>
-      <p>
+      <p id="testBox">
         Test: 
         <button class="button1" onclick="phaseTest()">
           <p>Start</p>
@@ -143,6 +143,12 @@
   const diveCooldown = 20;
   const fmaCooldown = 150;
   const groggyDuration = 20;
+  const testDuration = 50;
+  const breath1Cooldown = 60;
+  const breath2Cooldown = 45;
+  const breath3Cooldown = 30;
+  const bind10Sec = 10;
+  const bind15Sec = 15;
 
   var phase;
 
@@ -216,8 +222,9 @@
   }
 
   function phaseTest(){
+    document.getElementById("testBox").style.color = 'yellow';
     if (phaseSec <= groggyDuration) {
-      phaseSec = 50;
+      phaseSec = testDuration;
       clearInterval(phaseCountdown);
       phaseCountdown = setInterval(function(){
           phaseSec--;
@@ -226,19 +233,22 @@
             phaseFMASec = 0;
             phaseSystemSec = 0;
           }
+          testIndicator();
         }, 1000);
         
       phaseFMASec = fmaSec;
       clearInterval(fmaCountdown);
-      fmaSec += 50;
+      fmaSec += testDuration;
       fmaTimer(fmaSec);
       checkWarningFMA();
 
-      phaseSystemSec = systemFailSec;
-      clearInterval(systemFailCountdown);
-      systemFailSec += 50;
-      systemFailTimer(systemFailSec);
-      checkWarningSystemFail();
+      if (numSystemsOnline != maxSystems) {
+        phaseSystemSec = systemFailSec;
+        clearInterval(systemFailCountdown);
+        systemFailSec += testDuration;
+        systemFailTimer(systemFailSec);
+        checkWarningSystemFail();
+      }
 
       if (phase < maxPhase){
         changePhase(phase+1);
@@ -257,17 +267,30 @@
       }
       checkWarningFMA();
 
-      clearInterval(systemFailCountdown);
-      systemFailTimer(phaseSystemSec);
-      checkWarningSystemFail();
+      if (numSystemsOnline != maxSystems) {
+        clearInterval(systemFailCountdown);
+        systemFailTimer(phaseSystemSec);
+        checkWarningSystemFail();
+      }
 
       if (phase > minPhase){
         changePhase(phase-1);
       }
       clearInterval(phaseCountdown);
       phaseSec = 0;
+      testIndicator();
     }
   }
+
+  function testIndicator() {
+    if (phaseSec > 0) {
+      document.getElementById("testBox").style.color = 'yellow';
+    } else {
+      document.getElementById("testBox").style.color = 'black';
+    }
+  }
+
+
 
 
 
@@ -330,13 +353,13 @@
   }
   function breathTimer(){
     if (phase == 1) {
-      breathSec = 60;
+      breathSec = breath1Cooldown;
     }
     if (phase == 2) {
-      breathSec = 45;
+      breathSec = breath2Cooldown;
     }
     if (phase >= 3) {
-      breathSec = 30;
+      breathSec = breath3Cooldown;
     }
     document.getElementById('breathTimer').innerHTML = breathSec;
     checkWarningBreath();
@@ -424,13 +447,13 @@
   }
   function fmaAdd10(){
     clearInterval(fmaCountdown);
-    fmaSec += 10;
+    fmaSec += bind10Sec;
     fmaTimer(fmaSec);
     checkWarningFMA();
   }
   function fmaAdd15(){
     clearInterval(fmaCountdown);
-    fmaSec += 15;
+    fmaSec += bind15Sec;
     fmaTimer(fmaSec);
     checkWarningFMA();
   }
