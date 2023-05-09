@@ -1,23 +1,15 @@
 <html>
   <div>
-    <div id="phase" style="background-color:#aaa; margin:auto; width:80%;">
+    <div id="phase" style="background-color:#aaa; margin:auto; width:60%;">
       <h1 id="headline">
         Kalos Timers p2-1
       </h1>
       <button class="button1" onclick="startPhase(3)">
         <p>p2 Start</p>
       </button>
-      <p>Systems:<b id="systemsOnline">--</b>
-        <button class="button2" onclick="incSystems()">
-          <p>+</p>
-        </button>
-        <button class="button2" onclick="decSystems()">
-          <p>-</p>
-        </button>
-      </p>
-      <p>
+      <p style="margin-left: 20px; margin-right: 20px;">
         HP: 
-        <button class="button2" onclick="changePhase(4)">
+        <button class="button2" onclick="changePhase(4)" style="margin-left: 8px;">
           <p>0%-25%</p>
         </button>
         <button class="button2" onclick="changePhase(3)">
@@ -30,9 +22,31 @@
           <p>76%-100%</p>
         </button>
       </p>
-      <p id="testBox">
+      <p style="margin-left: 20px; margin-right: 20px;">
+        Systems:
+        <b id="systemsOnline">--</b>
+        <button class="button2" onclick="incSystems()" style="margin-left: 8px;">
+          <p>+</p>
+        </button>
+        <button class="button2" onclick="decSystems()">
+          <p>-</p>
+        </button>
+        <button class="button2" onclick="systemFailTimer(60)">
+          <p>Reset System Activation</p>
+        </button>
+      </p>
+      <p id="bindBox" style="margin-left: 20px; margin-right: 20px;">
+        Bind: 
+        <button class="button2" onclick="fmaAdd10()" style="margin-left: 8px;">
+          <p>10s</p>
+        </button>
+        <button class="button2" onclick="fmaAdd15()">
+          <p>15s</p>
+        </button>
+      </p>
+      <p id="testBox" style="margin-left: 20px; margin-right: 20px;">
         Test: 
-        <button class="button1" onclick="phaseTest()">
+        <button class="button1" onclick="phaseTest()" style="margin-left: 8px;">
           <p>Start</p>
         </button>
         <button class="button1" onclick="failTest()">
@@ -41,55 +55,48 @@
       </p>
     </div>
   </div>
-  <div class="item2" id="bombBox" style="background-color:#ccc;">
+
+
+  <div class="item2" id="bombBox" style="background-color:#ccc;" onclick="bombTimer()">
     <h2 id="bombTimer">--</h2>
-    <button class="button1" onclick="bombTimer()">
-      <p>Bombs</p>
-    </button>
-    <button class="button2" onclick="bombReset()">
-      <p>Cancel</p>
-    </button>
-  </div>
-
-
-
-  <div class="grid-container1">
-    <div class="item1" id="breathBox" style="background-color:#ccc;">
-      <h2 id="breathTimer">--</h2>
-      <button class="button1" onclick="breathTimer()"> 
-        <p>Laser</p>
-      </button>
-    </div>
-    <div class="item1" id="diveBox" style="background-color:#ccc;">
-      <h2 id="diveTimer">--</h2>
-      <button class="button1" onclick="diveTimer()">
-        <p>Dive</p>
-      </button>
-    </div>
-    <div class="item1" id="fmaBox" style="background-color:#ccc;">
-      <h2 id="fmaTimer">--</h2>
-      <button class="button1" onclick="fmaMaxSystemsCheck(); fmaTimer(150); incSystems()">
-        <p>FMA</p>
-      </button>
-      <button class="button2" onclick="fmaAdd10()">
-        <p>10s bind</p>
-      </button>
-      <button class="button2" onclick="fmaAdd15()">
-        <p>15s bind</p>
-      </button>
-    </div>
-    <div class="item1" id="systemFailBox" style="background-color:#ccc;">
-      <h2 id="systemFailTimer">--</h2>
-      
-      <button class="button1" onclick="systemCleanse()">
-        <p>Cleanse</p>
-      </button>
-      <button class="button2" onclick="systemFailTimer(60)">
-        <p>Reset System Activation</p>
-      </button>
-      <button class="button2" onclick="systemFailReset()">
+    <h3>Bombs
+      <button class="button2" style="margin-left: 8px;" onclick="bombCancel(); event.stopPropagation()">
         <p>Cancel</p>
       </button>
+    </h3>
+  </div>
+  <div class="grid-container1">
+    <div class="item1" id="breathBox" style="background-color:#ccc;" onclick="breathTimer()">
+      <h2 id="breathTimer">--</h2>
+      <h3>Laser
+        <button class="button2" style="margin-left: 8px;" onclick="breathCancel(); event.stopPropagation()">
+          <p>Cancel</p>
+        </button>
+      </h3>
+    </div>
+    <div class="item1" id="diveBox" style="background-color:#ccc;" onclick="diveTimer()">
+      <h2 id="diveTimer">--</h2>
+      <h3>Dive
+        <button class="button2" style="margin-left: 8px;" onclick="diveCancel(); event.stopPropagation()">
+          <p>Cancel</p>
+        </button>
+      </h3>
+    </div>
+    <div class="item1" id="fmaBox" style="background-color:#ccc;" onclick="fmaMaxSystemsCheck(); fmaTimer(150); incSystems()">
+      <h2 id="fmaTimer">--</h2>
+        <h3>FMA
+          <button class="button2" style="margin-left: 8px;" onclick="fmaCancel(); event.stopPropagation()">
+            <p>Cancel</p>
+          </button>
+        </h3>
+    </div>
+    <div class="item1" id="systemFailBox" style="background-color:#ccc;" onclick="systemCleanse()">
+      <h2 id="systemFailTimer">--</h2>
+      <h3>Cleanse   
+        <button class="button2" style="margin-left: 8px;" onclick="systemFailCancel(); event.stopPropagation()">
+          <p>Cancel</p>
+        </button>
+      </h3>
     </div>
   </div>
 </html>
@@ -97,14 +104,15 @@
 <style>
   h1 {text-align: center; font-size: 40;}
   h2 {text-align: center; font-size: 40;}
-  h3 {text-align: center; font-size: 25;}
+  h3 {text-align: center; font-size: 12; font-family: 'Helvetica', 'Arial', 'sans-serif';}
   div {text-align: center; padding: 10px;}
-  p {text-align: center;}
+  p {text-align: left; font-family: 'Helvetica', 'Arial', 'sans-serif'; font-size: 12;}
   b {padding: 10px}
   .item1 {border: 3px solid transparent; display: block; align-items: center; justify-content: center; height: 152px;}
   .item2 {border: 3px solid transparent; margin: auto; width:20%; display: block; align-items: center; justify-content: center; height: 152px;}
-  .grid-container1 {margin: auto; width:80%; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
+  .grid-container1 {margin: auto; width:60%; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
   .button1 {
+    font-family: 'Helvetica', 'Arial', 'sans-serif';
     background-color: #555555;
     border: none;
     color: white;
@@ -116,6 +124,7 @@
     border-radius: 3px;
   }
   .button2 {
+    font-family: 'Helvetica', 'Arial', 'sans-serif';
     background-color: white;
     border: #555555;
     color: black;
@@ -123,8 +132,21 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 11px;
+    font-size: 12px;
     border-radius: 3px;
+  }
+  .button3 {
+    font-family: 'Helvetica', 'Arial', 'sans-serif';
+    background-color: white;
+    border: #555555;
+    color: black;
+    padding: 1px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 3px;
+    margin-left: 6px;
   }
 </style>
 
@@ -150,7 +172,7 @@
   const bind10Sec = 10;
   const bind15Sec = 15;
 
-  var phase;
+  var phase = minPhase;
 
   var bombCountdown;
   var breathCountdown;
@@ -184,11 +206,20 @@
   function startPhase() {
     phase = 1;
     bombTimer();
+    clearInterval(breathCountdown);
+    breathSec = 0;
+    document.getElementById('breathTimer').innerHTML = breathSec;
+    clearInterval(diveCountdown);
+    diveSec = 0;
+    document.getElementById('diveTimer').innerHTML = diveSec;
     fmaTimer(fmaCooldown);
     systemFailTimer(systemCooldown);
     numSystemsOnline = minSystems;
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+
     checkWarningBomb();
+    checkWarningBreath();
+    checkWarningDive();
     checkWarningFMA();
     checkWarningNumSystems();
     checkWarningSystemFail();
@@ -290,6 +321,23 @@
     }
   }
 
+  function fmaAdd10(){
+    clearInterval(fmaCountdown);
+    fmaSec += bind10Sec;
+    fmaTimer(fmaSec);
+    checkWarningFMA();
+  }
+  function fmaAdd15(){
+    clearInterval(fmaCountdown);
+    fmaSec += bind15Sec;
+    fmaTimer(fmaSec);
+    checkWarningFMA();
+  }
+  function fmaMaxSystemsCheck() {
+    if (numSystemsOnline == maxSystems-1) {
+        systemFailTimer(systemCooldown);
+    }
+  }
 
 
 
@@ -325,7 +373,7 @@
       }
     }, 1000);
   }
-  function bombReset(){
+  function bombCancel(){
     bombSec = bombCooldown;
     document.getElementById('bombTimer').innerHTML = "--";
     checkWarningBomb();
@@ -373,6 +421,12 @@
       }
     }, 1000);
   }
+  function breathCancel() {
+    breathSec = breath1Cooldown;
+    document.getElementById('breathTimer').innerHTML = "--";
+    checkWarningBreath();
+    clearInterval(breathCountdown);
+  }
 
 
   
@@ -394,20 +448,27 @@
       document.getElementById("diveBox").style.border = '3px solid transparent';
     }
   }
-    function diveTimer() {
-      diveSec = diveCooldown;
+  function diveTimer() {
+    diveSec = diveCooldown;
+    document.getElementById('diveTimer').innerHTML = diveSec;
+    checkWarningDive();
+    clearInterval(diveCountdown);
+    diveCountdown = setInterval(function(){
+      diveSec--;
       document.getElementById('diveTimer').innerHTML = diveSec;
       checkWarningDive();
-      clearInterval(diveCountdown);
-      diveCountdown = setInterval(function(){
-        diveSec--;
-        document.getElementById('diveTimer').innerHTML = diveSec;
-        checkWarningDive();
-        if (diveSec <= 0) {
-          clearInterval(diveCountdown);
-        }
-      }, 1000);
+      if (diveSec <= 0) {
+        clearInterval(diveCountdown);
+      }
+    }, 1000);
     }
+    function diveCancel(){
+      diveSec = diveCooldown;
+      document.getElementById('diveTimer').innerHTML = "--";
+      checkWarningDive();
+      clearInterval(diveCountdown);
+    }
+    
 
 
 
@@ -445,22 +506,11 @@
       }
     }, 1000);
   }
-  function fmaAdd10(){
-    clearInterval(fmaCountdown);
-    fmaSec += bind10Sec;
-    fmaTimer(fmaSec);
+  function fmaCancel() {
+    fmaSec = fmaCooldown;
+    document.getElementById('fmaTimer').innerHTML = "--";
     checkWarningFMA();
-  }
-  function fmaAdd15(){
     clearInterval(fmaCountdown);
-    fmaSec += bind15Sec;
-    fmaTimer(fmaSec);
-    checkWarningFMA();
-  }
-  function fmaMaxSystemsCheck() {
-    if (numSystemsOnline == maxSystems-1) {
-        systemFailTimer(systemCooldown);
-    }
   }
 
 
@@ -505,7 +555,7 @@
       }
     }, 1000);
   }
-  function systemFailReset(){
+  function systemFailCancel(){
     systemFailSec = systemCooldown;
     document.getElementById('systemFailTimer').innerHTML = "--";
     checkWarningSystemFail();
