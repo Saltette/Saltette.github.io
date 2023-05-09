@@ -2,23 +2,23 @@
   <div>
     <div id="phase" style="background-color:#aaa; margin:auto; max-width:806px;">
       <h1 id="headline">
-        Kalos Timers p2-1
+        Kalos Timers p2
       </h1>
       <button class="button1" onclick="startPhase(3)">
         <p>p2 Start</p>
       </button>
       <p style="margin-left: 20px; margin-right: 20px;">
         HP: 
-        <button class="button2" onclick="changePhase(4)" style="margin-left: 8px;">
+        <button id="phase4Button" class="button2" onclick="changePhase(4)" style="margin-left: 8px;">
           <p>0%-25%</p>
         </button>
-        <button class="button2" onclick="changePhase(3)">
+        <button id="phase3Button" class="button2" onclick="changePhase(3)">
           <p>26%-50%</p>
         </button>
-        <button class="button2" onclick="changePhase(2)">
+        <button id="phase2Button" class="button2" onclick="changePhase(2)">
           <p>51%-75%</p>
         </button>
-        <button class="button2" onclick="changePhase(1)">
+        <button id="phase1Button" class="button2" onclick="changePhase(1)">
           <p>76%-100%</p>
         </button>
       </p>
@@ -32,7 +32,7 @@
           <p>-</p>
         </button>
         <button class="button2" onclick="systemFailTimer(60)">
-          <p>Reset System Activation</p>
+          <p>Reset System Timer</p>
         </button>
       </p>
       <p id="bindBox" style="margin-left: 20px; margin-right: 20px;">
@@ -202,7 +202,27 @@
 
   function changePhase(num) {
     phase = num;
-    document.getElementById('headline').innerHTML="Kalos Timers p2-"+phase;
+    if (phase == 1) {
+      document.getElementById('phase1Button').style.background='#ccc';
+    } else {
+      document.getElementById('phase1Button').style.background='white';
+    }
+    if (phase == 2) {
+      document.getElementById('phase2Button').style.background='#ccc';
+    } else {
+      document.getElementById('phase2Button').style.background='white';
+    }
+    if (phase == 3) {
+      document.getElementById('phase3Button').style.background='#ccc';
+    } else {
+      document.getElementById('phase3Button').style.background='white';
+    }
+    if (phase == 4) {
+      document.getElementById('phase4Button').style.background='#ccc';
+    } else {
+      document.getElementById('phase4Button').style.background='white';
+    }
+    
   }
 
   function startPhase() {
