@@ -1,6 +1,6 @@
 <html>
   <div>
-    <div id="phase" style="background-color:#aaa; margin:auto; width:60%;">
+    <div id="phase" style="background-color:#aaa; margin:auto; max-width:806px;">
       <h1 id="headline">
         Kalos Timers p2-1
       </h1>
@@ -59,8 +59,11 @@
 
   <div class="item2" id="bombBox" style="background-color:#ccc;" onclick="bombTimer()">
     <h2 id="bombTimer">--</h2>
-    <h3>Bombs
-      <button class="button2" style="margin-left: 8px;" onclick="bombCancel(); event.stopPropagation()">
+    <h3>
+      <button class="button2" style=" background-color:#ccc;">
+        <p>Bombs</p>
+      </button>
+      <button class="button2" onclick="bombCancel(); event.stopPropagation()">
         <p>Cancel</p>
       </button>
     </h3>
@@ -68,32 +71,44 @@
   <div class="grid-container1">
     <div class="item1" id="breathBox" style="background-color:#ccc;" onclick="breathTimer()">
       <h2 id="breathTimer">--</h2>
-      <h3>Laser
-        <button class="button2" style="margin-left: 8px;" onclick="breathCancel(); event.stopPropagation()">
+      <h3>
+        <button class="button2" style=" background-color:#ccc;">
+          <p>Laser</p>
+        </button>
+        <button class="button2" onclick="breathCancel(); event.stopPropagation()">
           <p>Cancel</p>
         </button>
       </h3>
     </div>
     <div class="item1" id="diveBox" style="background-color:#ccc;" onclick="diveTimer()">
       <h2 id="diveTimer">--</h2>
-      <h3>Dive
-        <button class="button2" style="margin-left: 8px;" onclick="diveCancel(); event.stopPropagation()">
+      <h3>
+        <button class="button2" style=" background-color:#ccc;">
+          <p>Dive</p>
+        </button>
+        <button class="button2" onclick="diveCancel(); event.stopPropagation()">
           <p>Cancel</p>
         </button>
       </h3>
     </div>
     <div class="item1" id="fmaBox" style="background-color:#ccc;" onclick="fmaMaxSystemsCheck(); fmaTimer(150); incSystems()">
       <h2 id="fmaTimer">--</h2>
-        <h3>FMA
-          <button class="button2" style="margin-left: 8px;" onclick="fmaCancel(); event.stopPropagation()">
+        <h3>
+          <button class="button2" style=" background-color:#ccc;">
+            <p>FMA</p>
+          </button>
+          <button class="button2" onclick="fmaCancel(); event.stopPropagation()">
             <p>Cancel</p>
           </button>
         </h3>
     </div>
     <div class="item1" id="systemFailBox" style="background-color:#ccc;" onclick="systemCleanse()">
       <h2 id="systemFailTimer">--</h2>
-      <h3>Cleanse   
-        <button class="button2" style="margin-left: 8px;" onclick="systemFailCancel(); event.stopPropagation()">
+      <h3>
+        <button class="button2" style=" background-color:#ccc;">
+          <p>Cleanse</p>
+        </button>  
+        <button class="button2" onclick="systemFailCancel(); event.stopPropagation()">
           <p>Cancel</p>
         </button>
       </h3>
@@ -104,15 +119,15 @@
 <style>
   h1 {text-align: center; font-size: 40;}
   h2 {text-align: center; font-size: 40;}
-  h3 {text-align: center; font-size: 12; font-family: 'Helvetica', 'Arial', 'sans-serif';}
-  div {text-align: center; padding: 10px;}
-  p {text-align: left; font-family: 'Helvetica', 'Arial', 'sans-serif'; font-size: 12;}
+  h3 {text-align: center; font-size: 12;}
+  div {text-align: center; padding: 10px 0px;}
+  p {text-align: left; font-size: 12; font-weight:bold;}
   b {padding: 10px}
   .item1 {border: 3px solid transparent; display: block; align-items: center; justify-content: center; height: 152px;}
-  .item2 {border: 3px solid transparent; margin: auto; width:20%; display: block; align-items: center; justify-content: center; height: 152px;}
-  .grid-container1 {margin: auto; width:60%; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
+  .item2 {border: 3px solid transparent; margin: auto; max-width:800px; display: block; align-items: center; justify-content: center; height: 152px;}
+  .grid-container1 {margin: auto; max-width:806px; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
   .button1 {
-    font-family: 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: bold;
     background-color: #555555;
     border: none;
     color: white;
@@ -124,7 +139,7 @@
     border-radius: 3px;
   }
   .button2 {
-    font-family: 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: bold;
     background-color: white;
     border: #555555;
     color: black;
@@ -134,19 +149,6 @@
     display: inline-block;
     font-size: 12px;
     border-radius: 3px;
-  }
-  .button3 {
-    font-family: 'Helvetica', 'Arial', 'sans-serif';
-    background-color: white;
-    border: #555555;
-    color: black;
-    padding: 1px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    border-radius: 3px;
-    margin-left: 6px;
   }
 </style>
 
