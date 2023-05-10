@@ -1,6 +1,6 @@
 <html>
   <div>
-    <div id="phase" style="background-color:#aaa; margin:auto; max-width:806px;">
+    <div class="graphics" id="phase">
       <h1 id="headline">
         Kalos Timers p2
       </h1>
@@ -37,10 +37,10 @@
       </p>
       <p id="bindBox" style="margin-left: 20px; margin-right: 20px;">
         Bind: 
-        <button class="button1" onclick="fmaAdd15()" style="margin-left: 8px;">
+        <button class="button1" onclick="bind(15)" style="margin-left: 8px;">
           <p>15 seconds</p>
         </button>
-        <button class="button1" onclick="fmaAdd10()">
+        <button class="button1" onclick="bind(10)">
           <p>10 seconds</p>
         </button>
       </p>
@@ -150,6 +150,15 @@
     font-size: 12px;
     border-radius: 3px;
   }
+  .graphics{
+    background-color:#aaa;
+    margin:auto; 
+    max-width:806px;
+    background-size: 650px;
+    background-image: url("images/kaloshimself.png"), url("images/kalosplatforms.png");
+    background-position: bottom right;
+    background-repeat: no-repeat
+  }
 </style>
 
 <script>
@@ -189,10 +198,16 @@
   var systemFailSec = systemCooldown;
 
   var numSystemsOnline = 0;
+
   var phaseFMASec = 0;
   var phaseSystemSec = 0;
+
   var phaseCountdown;
   var phaseSec = 0;
+
+  var bindCountdown;
+  var bindSec = 0;
+
   
 
 
@@ -226,6 +241,13 @@
   }
 
   function startPhase() {
+    numSystemsOnline = 0;
+    phaseFMASec = 0;
+    phaseSystemSec = 0;
+    phaseSec = 0;
+    clearInterval(phaseCountdown);
+    bindSec = 0;
+    clearInterval(bindCountdown);
     changePhase(1);
     bombTimer();
     clearInterval(breathCountdown);
@@ -238,6 +260,7 @@
     systemFailTimer(systemCooldown);
     numSystemsOnline = minSystems;
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+    
 
     checkWarningBomb();
     checkWarningBreath();
@@ -245,6 +268,8 @@
     checkWarningFMA();
     checkWarningNumSystems();
     checkWarningSystemFail();
+    testIndicator();
+    bindIndicator();
   }
 
   function incSystems () {
@@ -275,9 +300,16 @@
   }
 
   function phaseTest(){
-    document.getElementById("testBox").style.color = 'yellow';
     if (phaseSec <= groggyDuration) {
+      if (bindSec > 0) {
+        clearInterval(fmaCountdown);
+        clearInterval(bindCountdown);
+        fmaSec -= bindSec;
+        bindSec = 0;
+        bindIndicator();
+      }
       phaseSec = testDuration;
+      testIndicator();
       clearInterval(phaseCountdown);
       phaseCountdown = setInterval(function(){
           phaseSec--;
@@ -310,19 +342,19 @@
   }
 
   function failTest() {
-    if (phaseSec > 0) {
+    if (phaseSec > groggyDuration-5) {
       clearInterval(fmaCountdown);
       if (phaseFMASec <= 0) {
         fmaSec = 0;
         document.getElementById('fmaTimer').innerHTML = fmaSec;
       } else {
-        fmaTimer(phaseFMASec);
+        fmaTimer(phaseFMASec-1);
       }
       checkWarningFMA();
 
       if (numSystemsOnline != maxSystems) {
         clearInterval(systemFailCountdown);
-        systemFailTimer(phaseSystemSec);
+        systemFailTimer(phaseSystemSec-1);
         checkWarningSystemFail();
       }
 
@@ -336,28 +368,47 @@
   }
 
   function testIndicator() {
-    if (phaseSec > 0) {
-      document.getElementById("testBox").style.color = 'yellow';
+    if (phaseSec > groggyDuration) {
+      document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png'), url('images/kalostest.png')";
+    }
+    else if (phaseSec > 0) {
+      document.getElementById('phase').style.backgroundImage = "url('images/kalosxeyes.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
     } else {
-      document.getElementById("testBox").style.color = 'black';
+      document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
     }
   }
 
-  function fmaAdd10(){
-    clearInterval(fmaCountdown);
-    fmaSec += bind10Sec;
-    fmaTimer(fmaSec);
-    checkWarningFMA();
+  function bind(sec){
+    if (bindSec < 5 && phaseSec <= 0) {
+      bindSec = sec;
+      bindIndicator();
+      clearInterval(bindCountdown);
+      bindCountdown = setInterval(function(){
+          bindSec--;
+          if (bindSec <= 0) {
+            clearInterval(bindCountdown);
+          }
+          bindIndicator();
+        }, 1000);
+
+      clearInterval(fmaCountdown);
+      fmaSec += bindSec;
+      fmaTimer(fmaSec);
+      checkWarningFMA();
+    }
   }
-  function fmaAdd15(){
-    clearInterval(fmaCountdown);
-    fmaSec += bind15Sec;
-    fmaTimer(fmaSec);
-    checkWarningFMA();
-  }
+
   function fmaMaxSystemsCheck() {
     if (numSystemsOnline == maxSystems-1) {
         systemFailTimer(systemCooldown);
+    }
+  }
+
+  function bindIndicator() { 
+    if (bindSec > 0) {
+      document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
+    } else {
+      document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
     }
   }
 
