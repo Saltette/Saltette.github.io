@@ -302,9 +302,7 @@
   function phaseTest(){
     if (phaseSec <= groggyDuration) {
       if (bindSec > 0) {
-        clearInterval(fmaCountdown);
         clearInterval(bindCountdown);
-        fmaSec -= bindSec;
         bindSec = 0;
         bindIndicator();
       }
