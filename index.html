@@ -1,6 +1,18 @@
 <html>
   <div>
     <div class="graphics" id="phase" style="min-width: 418px;">
+      <div class="info" onclick="toggleInfo()">
+        <p style="text-align: center;">?</p>
+      </div>
+      <div class="collapsible" id="infoText">
+        <p>Press "P2 Start" one or two seconds after the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
+
+        <p>Ideally, white buttons are never pressed. They only adjust timings, phase, and number of systems in case of mistakes.</p>
+
+        <p>Black buttons, Cleanse, FMA, Laser, Dive, and Bombs should be pressed at the exact time each occurs.</p>
+
+        <p>Bombs will most likely de-sync depending on server lag.</p>
+      </div>
       <h1 id="headline">
         P2 Kalos Timer
       </h1>
@@ -173,6 +185,29 @@
     margin-left: 3px;
     display: inline-block;
   }
+  .info{
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+    background: white;
+    display: block;
+    width: 40px;
+    padding: 0px 0px;
+    border-radius: 100px; 
+  }
+  .collapsible{
+    position: absolute;
+    margin-left: 20px;
+    margin-right: 18px;
+    margin-top: 55px;
+    max-width: 305px;
+    font-size: 12;
+    background: white;
+    display: none;
+    padding: 15px 15px;
+    border-radius: 3px; 
+  }
 </style>
 
 <script>
@@ -222,7 +257,17 @@
   var bindCountdown;
   var bindSec = 0;
 
-  
+  var visibleInfo = false;
+
+  function toggleInfo() {
+    if (visibleInfo == false) {
+      document.getElementById('infoText').style.display = 'block';
+      visibleInfo = true;
+    } else {
+      document.getElementById('infoText').style.display = 'none';
+      visibleInfo = false;
+    }
+  }
 
 
 
