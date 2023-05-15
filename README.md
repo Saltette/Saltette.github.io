@@ -8,7 +8,7 @@ Press "P2 Start" 1 or 2 seconds after the cutscene of the dog turns completely b
 
 Ideally, white buttons are never pressed. They're to adjust for timings, phase, and visuals in case of mistakes.
 
-Black buttons, Bombs, Laser, Dive, FMA, and Cleanse should be pressed at the exact time each occurs.
+Black buttons, Cleanse, FMA, Laser, Dive, and Bombs should be pressed at the exact time each occurs.
 
 Bombs will most likely de-sync depending on server lag.
 
