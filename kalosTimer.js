@@ -144,10 +144,10 @@ function decSystems () {
 
 function checkWarningNumSystems () {
     if (numSystemsOnline == maxSystems) {
-        document.getElementById("systemsOnline").style.color = 'red';
+        //document.getElementById("systemsOnline").style.color = 'red';
         document.getElementById("systemFailTimer").style.color = 'red';
     } else {
-        document.getElementById("systemsOnline").style.color = 'black';
+        //document.getElementById("systemsOnline").style.color = 'black';
     }
 }
 
