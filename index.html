@@ -11,7 +11,7 @@
 
       <p>Ideally, white buttons are never pressed. They only adjust timings, phase, and number of systems in case of mistakes.</p>
 
-      <p>Black buttons, Cleanse, FMA, Laser, Dive, and Bombs should be pressed at the exact time each occurs.</p>
+      <p>Black buttons, Cleanse, FMA, Laser, and Dive should be pressed at the exact time.</p>
 
       <p>Bombs will most likely de-sync depending on server lag.</p>
     </div>
@@ -44,9 +44,6 @@
       </button>
       <button class="button2" onclick="decSystems()">
         <p>-</p>
-      </button>
-      <button class="button2" onclick="systemFailTimer(60)">
-        <p>Reset System Timer</p>
       </button>
     </p>
     <p id="bindBox" style="margin-left: 20px; margin-right: 20px;">
@@ -81,8 +78,8 @@
     <button id="cleanseButton" class="button2" style=" background-color:#ccc;">
       <p>Cleanse</p>
     </button>  
-    <button class="button2" onclick="systemFailCancel(); event.stopPropagation()">
-      <p>Cancel</p>
+    <button class="button2" onclick="systemFailTimer(60); event.stopPropagation()">
+      <p>Reset</p>
     </button>
   </h3>
 </div>
