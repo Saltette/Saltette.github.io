@@ -1,0 +1,98 @@
+
+  body {margin: 0px 10px;}
+  h1 {text-align: center; font-size: 36;}
+  h2 {text-align: center; font-size: 40;}
+  h3 {text-align: center; font-size: 12;}
+  div {text-align: center; padding: 10px 0px; user-select: none;}
+  p {text-align: left; font-size: 12; font-weight:bold;}
+  .item1 {border: 3px solid transparent; 
+    display: block; 
+    align-items: center; 
+    justify-content: center;
+    padding: 0px 0px; 
+    cursor: pointer;
+    background-color:#ccc;
+  }
+    
+  .item2 {
+    border: 3px solid transparent; 
+    margin: auto; 
+    min-width: 412px; 
+    max-width:800px; 
+    display: block; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 0px 0px; 
+    cursor: pointer; 
+    background-color:#ccc;
+  }
+  .grid-container1 {margin: auto; min-width: 418px; max-width:806px; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
+  .button1 {
+    font-weight: bold;
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 1px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .button2 {
+    font-weight: bold;
+    background-color: white;
+    border: #555555;
+    color: black;
+    padding: 1px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .graphics{
+    background-color:#aaa;
+    margin:auto; 
+    min-width: 418px;
+    max-width:806px;
+    background-size: 650px;
+    background-image: url("images/kaloshimself.png"), url("images/kalosplatforms.png");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+  }
+  .systemdots{
+    border-radius: 10px;
+    background: black;
+    height: 10px;
+    width: 10px;
+    padding: 0px 0px;
+    margin-left: 3px;
+    display: inline-block;
+  }
+  .info{
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+    background: white;
+    display: block;
+    width: 40px;
+    padding: 0px 0px;
+    border-radius: 100px; 
+    cursor: pointer;
+  }
+  .collapsible{
+    position: absolute;
+    margin-left: 20px;
+    margin-right: 18px;
+    margin-top: 55px;
+    max-width: 305px;
+    font-size: 12;
+    background: white;
+    display: none;
+    padding: 15px 15px;
+    border-radius: 3px; 
+  }
