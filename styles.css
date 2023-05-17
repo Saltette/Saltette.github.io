@@ -1,5 +1,5 @@
 
-  body {margin: 0px 10px;}
+  body {margin: 0px 10px; background-color: #4d4d4d;}
   h1 {text-align: center; font-size: 36;}
   div {text-align: center; padding: 10px 0px; user-select: none;}
   p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
@@ -50,7 +50,7 @@
   }
   .button1 {
     font-weight: bold;
-    background-color: #555555;
+    background-color: #4d4d4d;
     border: none;
     color: white;
     padding: 1px 16px;
@@ -78,13 +78,13 @@
   .button2.systems {width:38px;}
   .button1.test {width: 60px;}
   .graphics{
-    background-color:#aaa;
+    background-color:#9a9a9a;
     margin:auto; 
     padding-bottom: 10px;
     min-width: 418px;
     max-width:806px;
     background-size: 650px;
-    background-image: url("images/kaloshimself.png"), url("images/kalosplatforms.png");
+    background-image: url("images/kaloshimself.png");
     background-position: bottom right;
     background-repeat: no-repeat;
   }
