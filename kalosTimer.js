@@ -35,9 +35,6 @@ var systemFailSec = systemCooldown;
 
 var numSystemsOnline = 0;
 
-var phaseFMASec = 0;
-var phaseSystemSec = 0;
-
 var phaseCountdown;
 var phaseSec = 0;
 
@@ -91,8 +88,6 @@ function changePhase(num) {
 function startPhase() {
     fmaTimerOn = true;
     numSystemsOnline = 0;
-    phaseFMASec = 0;
-    phaseSystemSec = 0;
     phaseSec = 0;
     clearInterval(phaseCountdown);
     bindSec = 0;
@@ -165,14 +160,11 @@ function phaseTest(){
             phaseSec--;
             if (phaseSec <= 0) {
                 clearInterval(phaseCountdown);
-                phaseFMASec = 0;
-                phaseSystemSec = 0;
             }
             testIndicator();
         }, 1000);
             
         if (fmaTimerOn == true) {
-            phaseFMASec = fmaSec;
             clearInterval(fmaCountdown);
             fmaSec += testDuration;
             fmaTimer(fmaSec);
@@ -180,7 +172,6 @@ function phaseTest(){
         }
 
         if (numSystemsOnline != maxSystems) {
-            phaseSystemSec = systemFailSec;
             clearInterval(systemFailCountdown);
             systemFailSec += testDuration;
             systemFailTimer(systemFailSec);
@@ -197,18 +188,23 @@ function failTest() {
     if (phaseSec > groggyDuration-5) {
         if (fmaTimerOn == true) {
             clearInterval(fmaCountdown);
-            if (phaseFMASec <= 0) {
+            if (fmaSec <= testDuration+1) {
                 fmaSec = 0;
                 document.getElementById('fmaTimer').innerHTML = fmaSec;
             } else {
-                fmaTimer(phaseFMASec-1);
+                fmaTimer(fmaSec-phaseSec-1);
             }
             checkWarningFMA();
         }
 
         if (numSystemsOnline != maxSystems) {
             clearInterval(systemFailCountdown);
-            systemFailTimer(phaseSystemSec-1);
+            if (systemFailSec <= testDuration+1) {
+                incSystems();
+                systemFailTimer(systemCooldown);
+            } else {
+                systemFailTimer(systemFailSec-phaseSec-1);
+            }
             checkWarningSystemFail();
         }
 
@@ -525,7 +521,6 @@ function systemFailCancel(){
 function systemCleanse() {
     if (numSystemsOnline == maxSystems) {
         systemFailTimer(systemCooldown + phaseSec);
-        phaseSystemSec = systemCooldown;
     }
     decSystems();
     checkWarningSystemFail();
