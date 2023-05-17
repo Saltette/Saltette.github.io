@@ -188,7 +188,7 @@ function failTest() {
     if (phaseSec > groggyDuration-5) {
         if (fmaTimerOn == true) {
             clearInterval(fmaCountdown);
-            if (fmaSec <= testDuration+1) {
+            if (fmaSec-phaseSec <= 1) {
                 fmaSec = 0;
                 document.getElementById('fmaTimer').innerHTML = fmaSec;
             } else {
@@ -199,7 +199,7 @@ function failTest() {
 
         if (numSystemsOnline != maxSystems) {
             clearInterval(systemFailCountdown);
-            if (systemFailSec <= testDuration+1) {
+            if (systemFailSec-phaseSec <= 1) {
                 incSystems();
                 systemFailTimer(systemCooldown);
             } else {
@@ -232,7 +232,7 @@ function testIndicator() {
 }
 
 function bind(sec){
-    if (bindSec < 5 && phaseSec <= 0) {
+    if (bindSec <= 0 && phaseSec <= 0) {
         bindSec = sec;
         bindIndicator();
         clearInterval(bindCountdown);
