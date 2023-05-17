@@ -88,11 +88,11 @@
     position: absolute;
     margin-left: 20px;
     margin-right: 18px;
-    margin-top: 55px;
+    margin-top: 50px;
     max-width: 305px;
     font-size: 12;
     background: white;
     display: none;
-    padding: 5px 15px;
+    padding: 0px 15px;
     border-radius: 3px; 
   }
