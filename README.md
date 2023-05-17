@@ -12,3 +12,4 @@ Black buttons, Cleanse, FMA, Laser, Dive, and Bombs should be pressed at the exa
 
 Bombs will most likely de-sync depending on server lag.
 
+FMA timer may not be accurate with a Wild Hunter or Zero in your party.
