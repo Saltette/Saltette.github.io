@@ -23,7 +23,7 @@
     <button class="button1" onclick="startPhase(3)">
       <p>P2 Start</p>
     </button>
-    <p style="margin-left: 20px; margin-right: 20px;">
+    <p style="margin-left: 20px; margin-right: 20px; text-align: left;">
       HP: 
       <button id="phase4Button" class="button2" onclick="changePhase(4)" style="margin-left: 8px;">
         <p>0%-25%</p>
@@ -38,7 +38,7 @@
         <p>76%-100%</p>
       </button>
     </p>
-    <p style="margin-left: 20px; margin-right: 20px;">
+    <p style="margin-left: 20px; margin-right: 20px; text-align: left;">
       Systems:
       <b id="systemsOnline">0</b>
       <button class="button2" onclick="incSystems()" style="margin-left: 8px;">
@@ -48,7 +48,7 @@
         <p>-</p>
       </button>
     </p>
-    <p id="bindBox" style="margin-left: 20px; margin-right: 20px;">
+    <p id="bindBox" style="margin-left: 20px; margin-right: 20px; text-align: left;">
       Bind: 
       <button class="button1" onclick="bind(15)" style="margin-left: 8px;">
         <p>15 seconds</p>
@@ -57,7 +57,7 @@
         <p>10 seconds</p>
       </button>
     </p>
-    <p id="testBox" style="margin-left: 20px; margin-right: 20px;">
+    <p id="testBox" style="margin-left: 20px; margin-right: 20px; text-align: left;">
       Test: 
       <button class="button1" onclick="phaseTest()" style="margin-left: 8px;">
         <p>Start</p>
@@ -71,8 +71,8 @@
 
 
 <div class="item2" id="systemFailBox" onclick="systemCleanse()">
-  <h2 id="systemFailTimer">--</h2>
-  <h3>
+  <div class="counter" id="systemFailTimer">--</div>
+  <div>
     <div class="systemdots" id="system1"></div>
     <div class="systemdots" id="system2"></div>
     <div class="systemdots" id="system3"></div>
@@ -83,51 +83,51 @@
     <button class="button2" onclick="systemFailTimer(60); event.stopPropagation()">
       <p>Reset</p>
     </button>
-  </h3>
+  </div>
 </div>
 <div class="grid-container1">
   <div class="item1" id="fmaBox" onclick="fmaMaxSystemsCheck(); fmaTimer(150); incSystems()">
-    <h2 id="fmaTimer">--</h2>
-      <h3>
+    <div class="counter" id="fmaTimer">--</div>
+      <div>
         <button id="fmaButton" class="button2" style=" background-color:#ccc;">
           <p>FMA</p>
         </button>
         <button class="button2" onclick="fmaCancel(); event.stopPropagation()">
           <p>Cancel</p>
         </button>
-      </h3>
+      </div>
   </div>
   <div class="item1" id="breathBox" onclick="breathTimer()">
-    <h2 id="breathTimer">--</h2>
-    <h3>
+    <div class="counter" id="breathTimer">--</div>
+    <div>
       <button class="button2" style=" background-color:#ccc;">
         <p>Laser</p>
       </button>
       <button class="button2" onclick="breathCancel(); event.stopPropagation()">
         <p>Cancel</p>
       </button>
-    </h3>
+    </div>
   </div>
   <div class="item1" id="bombBox" onclick="bombTimer()">
-    <h2 id="bombTimer">--</h2>
-    <h3>
+    <div class="counter" id="bombTimer">--</div>
+    <div>
       <button class="button2" style="background-color:#ccc;">
         <p>Bombs</p>
       </button>
       <button class="button2" onclick="bombCancel(); event.stopPropagation()">
         <p>Cancel</p>
       </button>
-    </h3>
+    </div>
   </div>
   <div class="item1" id="diveBox" onclick="diveTimer()">
-    <h2 id="diveTimer">--</h2>
-    <h3>
+    <div class="counter" id="diveTimer">--</div>
+    <div>
       <button class="button2" style="background-color:#ccc;">
         <p>Dive</p>
       </button>
       <button class="button2" onclick="diveCancel(); event.stopPropagation()">
         <p>Cancel</p>
       </button>
-    </h3>
+    </div>
   </div>
 </div>

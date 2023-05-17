@@ -1,10 +1,19 @@
 
   body {margin: 0px 10px;}
   h1 {text-align: center; font-size: 36;}
-  h2 {text-align: center; font-size: 40;}
-  h3 {text-align: center; font-size: 12;}
   div {text-align: center; padding: 10px 0px; user-select: none;}
-  p {text-align: left; font-size: 12; font-weight:bold;}
+  p {text-align: center; font-size: 12; font-weight:bold;}
+
+  .counter {
+    display: block;
+    font-size: 40px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 8px 0px;
+    font-weight: bold;
+  }
   .item1 {border: 3px solid transparent; 
     display: block; 
     align-items: center; 
