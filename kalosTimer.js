@@ -226,7 +226,7 @@ function testIndicator() {
         document.getElementById('phase').style.backgroundImage = "url('images/kalosxeyes.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
         document.getElementById('testBox').style.color = 'yellow';
     } else {
-        document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
+        document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png')";
         document.getElementById('testBox').style.color = 'black';
     }
 }
@@ -260,10 +260,10 @@ function fmaMaxSystemsCheck() {
 
 function bindIndicator() { 
     if (bindSec > 0) {
-        document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
+        document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png')";
         document.getElementById('bindBox').style.color = '#62d7ff';
     } else {
-        document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
+        document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png')";
         document.getElementById('bindBox').style.color = 'black';
     }
 }
