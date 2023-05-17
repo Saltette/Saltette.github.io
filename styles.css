@@ -2,11 +2,18 @@
   body {margin: 0px 10px;}
   h1 {text-align: center; font-size: 36;}
   div {text-align: center; padding: 10px 0px; user-select: none;}
-  p {text-align: center; font-size: 12; font-weight:bold;}
-
+  p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
+  p.left {text-align:left;}
+  p.text {font-weight: normal;}
+  p.start {
+    margin-top:15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   .counter {
     display: block;
-    font-size: 40px;
+    font-size: 42px;
     margin-top: 15px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -22,7 +29,6 @@
     cursor: pointer;
     background-color:#ccc;
   }
-    
   .item2 {
     border: 3px solid transparent; 
     margin: auto; 
@@ -35,7 +41,13 @@
     cursor: pointer; 
     background-color:#ccc;
   }
-  .grid-container1 {margin: auto; min-width: 418px; max-width:806px; display: grid; grid-gap: 10px; grid-template-columns: 1fr 1fr;}
+  .grid-container1 {margin: auto; 
+    min-width: 418px; 
+    max-width:806px; 
+    display: grid; 
+    grid-gap: 10px; 
+    grid-template-columns: 1fr 1fr;
+  }
   .button1 {
     font-weight: bold;
     background-color: #555555;
@@ -62,9 +74,13 @@
     border-radius: 3px;
     cursor: pointer;
   }
+  .button2.hp {width:92px;}
+  .button2.systems {width:38px;}
+  .button1.test {width: 60px;}
   .graphics{
     background-color:#aaa;
     margin:auto; 
+    padding-bottom: 10px;
     min-width: 418px;
     max-width:806px;
     background-size: 650px;
@@ -82,14 +98,15 @@
     display: inline-block;
   }
   .info{
+    font-weight: bold;
     position: absolute;
     margin-left: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
     font-size: 12px;
     background: white;
     display: block;
     width: 40px;
-    padding: 0px 0px;
+    padding: 3px 0px;
     border-radius: 100px; 
     cursor: pointer;
   }
@@ -97,7 +114,7 @@
     position: absolute;
     margin-left: 20px;
     margin-right: 18px;
-    margin-top: 50px;
+    margin-top: 25px;
     max-width: 305px;
     font-size: 12;
     background: white;
