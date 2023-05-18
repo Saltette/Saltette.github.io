@@ -496,7 +496,6 @@ function checkWarningSystemFail() {
         document.getElementById("cleanseButton").style.background = '#ccc';
     }
 }
-
 function systemFailTimer(sec){
     systemFailSec = sec;
     checkWarningSystemFail();
