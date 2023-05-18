@@ -252,11 +252,6 @@ function bind(sec){
     }
 }
 
-function fmaMaxSystemsCheck() {
-    if (numSystemsOnline == maxSystems-1) {
-        systemFailTimer(systemCooldown);
-    }
-}
 
 function bindIndicator() { 
     if (bindSec > 0) {
@@ -466,6 +461,13 @@ function fmaCancel() {
     document.getElementById('fmaTimer').innerHTML = "--";
     checkWarningFMA();
     clearInterval(fmaCountdown);
+}
+function fmaAttack() {
+    if (numSystemsOnline == maxSystems-1) {
+        systemFailTimer(systemCooldown);
+    }
+    fmaTimer(fmaCooldown);
+    incSystems();
 }
 
 
