@@ -29,6 +29,9 @@
     cursor: pointer;
     background-color:#ccc;
   }
+  .item1:hover {
+    filter: brightness(95%);
+  }
   .item2 {
     border: 3px solid transparent; 
     margin: auto; 
@@ -40,6 +43,9 @@
     padding: 0px 0px; 
     cursor: pointer; 
     background-color:#ccc;
+  }
+  .item2:hover {
+    filter: brightness(95%);
   }
   .grid-container1 {margin: auto; 
     min-width: 418px; 
@@ -59,7 +65,10 @@
     display: inline-block;
     font-size: 12px;
     border-radius: 3px;
-    cursor: pointer;
+    cursor: pointer; 
+  }
+  .button1:hover {
+    filter: brightness(90%);
   }
   .button2 {
     font-weight: bold;
@@ -109,6 +118,9 @@
     padding: 3px 0px;
     border-radius: 100px; 
     cursor: pointer;
+  }
+  .info:hover{
+    transform: scale(1.1);
   }
   .collapsible{
     position: absolute;
