@@ -21,7 +21,8 @@
     padding: 8px 0px;
     font-weight: bold;
   }
-  .item1 {border: 3px solid transparent; 
+  .item1 {
+    border: 3px solid transparent; 
     display: block; 
     align-items: center; 
     justify-content: center;
@@ -73,6 +74,22 @@
   .button2 {
     font-weight: bold;
     background-color: white;
+    border: none;
+    color: black;
+    padding: 1px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .button2:hover {
+    filter: brightness(95%);
+  }
+  .button3 {
+    font-weight: bold;
+    background-color: #ccc;
     border: none;
     color: black;
     padding: 1px 16px;
