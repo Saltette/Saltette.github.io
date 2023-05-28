@@ -129,15 +129,14 @@
     margin-left: 20px;
     margin-top: 0px;
     font-size: 12px;
-    background: white;
+    background: #E7A9EF;
     display: block;
-    width: 40px;
-    padding: 3px 0px;
+    padding: 3px 16px;
     border-radius: 100px; 
     cursor: pointer;
   }
   .info:hover{
-    transform: scale(1.1);
+    filter: brightness(105%);
   }
   .collapsible{
     position: absolute;
@@ -146,7 +145,7 @@
     margin-top: 25px;
     max-width: 305px;
     font-size: 12;
-    background: white;
+    background: #E7A9EF;
     display: none;
     padding: 0px 15px;
     border-radius: 3px; 
