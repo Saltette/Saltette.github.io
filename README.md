@@ -6,7 +6,7 @@ Phase 2 of Kalos timer for noteworthy cooldowns
 
 Press "P2 Start" one or two seconds after the cutscene of the dog turns completely black, phasing into p2 of Kalos.
 
-Ideally, white buttons are never pressed. They're to adjust for timings, phase, and number of systems in case of misclicks.
+Ideally, white buttons are never pressed. They are to adjust for timings, phase, and number of systems in case of misclicks by the timer.
 
 Black buttons, Cleanse, FMA, Breath, Dive, and Bombs should be pressed at the exact time each occurs.
 
