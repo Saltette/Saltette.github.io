@@ -126,7 +126,7 @@
   .info{
     font-weight: bold;
     position: absolute;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: 0px;
     font-size: 12px;
     background: #F9C3C3;
@@ -140,7 +140,7 @@
   }
   .collapsible{
     position: absolute;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-right: 18px;
     margin-top: 25px;
     max-width: 305px;
