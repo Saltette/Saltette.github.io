@@ -148,6 +148,10 @@ function checkWarningNumSystems () {
 
 function phaseTest(){
     if (phaseSec <= groggyDuration) {
+        // if phased during groggy, fma and system time will be reduced by the timing delay lost from not using all of the last groggy
+        // i have no confirmed video of this mechanic and am assuming this is how it works for now
+        var lostGroggyTime = phaseSec;
+
         if (bindSec > 0) {
             clearInterval(bindCountdown);
             bindSec = 0;
@@ -166,14 +170,14 @@ function phaseTest(){
             
         if (fmaTimerOn == true) {
             clearInterval(fmaCountdown);
-            fmaSec += testDuration;
+            fmaSec = fmaSec + testDuration - lostGroggyTime;
             fmaTimer(fmaSec);
             checkWarningFMA();
         }
 
         if (numSystemsOnline != maxSystems) {
             clearInterval(systemFailCountdown);
-            systemFailSec += testDuration;
+            systemFailSec = systemFailSec + testDuration - lostGroggyTime;
             systemFailTimer(systemFailSec);
             checkWarningSystemFail();
         }
@@ -496,6 +500,7 @@ function checkWarningSystemFail() {
         document.getElementById("cleanseButton").style.background = '#ccc';
     }
 }
+
 function systemFailTimer(sec){
     systemFailSec = sec;
     checkWarningSystemFail();
