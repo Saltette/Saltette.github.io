@@ -3,19 +3,28 @@ const warningBreath = 10;
 const warningDive = 5;
 const warningFMA = 20;
 const warningSystemFail = 30;
+const warningUFO = 5;
+const warningLasers = 5;
+const warningArrows = 5;
+
 const maxSystems = 4;
 const minSystems = 0;
 const maxPhase = 4;
 const minPhase = 1;
+
 const systemCooldown = 60;
 const bombCooldown = 10;
 const diveCooldown = 20;
 const fmaCooldown = 150;
-const groggyDuration = 20;
-const testDuration = 50;
 const breath1Cooldown = 60;
 const breath2Cooldown = 45;
 const breath3Cooldown = 30;
+const ufoCooldown = 28;
+const lasersCooldown = 15;
+const arrowsCooldown = 15;
+
+const groggyDuration = 20;
+const testDuration = 50;
 const bind10Sec = 10;
 const bind15Sec = 15;
 
@@ -26,12 +35,18 @@ var breathCountdown;
 var diveCountdown;
 var fmaCountdown;
 var systemFailCountdown;
+var ufoCountdown;
+var lasersCountdown;
+var arrowsCountdown;
 
 var bombSec;
 var breathSec;
 var diveSec;
 var fmaSec = fmaCooldown;
 var systemFailSec = systemCooldown;
+var ufoSec;
+var lasersSec;
+var arrowsSec;
 
 var numSystemsOnline = 0;
 
@@ -531,4 +546,71 @@ function systemCleanse() {
     decSystems();
     checkWarningSystemFail();
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+}
+
+
+
+
+
+
+function checkWarningLasers() {
+    if (lasersSec <= warningLasers) {
+        document.getElementById("lasersTimer").style.color = 'red';
+        document.getElementById("lasersBox").style.border = '3px solid red';
+    }
+    else {
+        document.getElementById("lasersTimer").style.color = 'black';
+        document.getElementById("lasersBox").style.border = '3px solid transparent';
+    }
+}
+function lasersTimer(){
+    lasersSec = lasersCooldown;
+    document.getElementById('lasersTimer').innerHTML = lasersSec;
+    checkWarningLasers();
+    clearInterval(lasersCountdown);
+    lasersCountdown = setInterval(function(){
+        lasersSec--;
+        document.getElementById('lasersTimer').innerHTML = lasersSec;
+        checkWarningLasers();
+        if (lasersSec <= 0) {
+            lasersSec = lasersCooldown;
+        }
+    }, 1000);
+}
+function lasersCancel(){
+    lasersSec = lasersCooldown;
+    document.getElementById('lasersTimer').innerHTML = "--";
+    checkWarningLasers();
+    clearInterval(lasersCountdown);
+}
+
+function checkWarningArrows() {
+    if (arrowsSec <= warningArrows) {
+        document.getElementById("arrowsTimer").style.color = 'red';
+        document.getElementById("arrowsBox").style.border = '3px solid red';
+    }
+    else {
+        document.getElementById("arrowsTimer").style.color = 'black';
+        document.getElementById("arrowsBox").style.border = '3px solid transparent';
+    }
+}
+function arrowsTimer(){
+    arrowsSec = arrowsCooldown;         
+    document.getElementById('arrowsTimer').innerHTML = arrowsSec;
+    checkWarningArrows();
+    clearInterval(arrowsCountdown);
+    arrowsCountdown = setInterval(function(){
+        arrowsSec--;
+        document.getElementById('arrowsTimer').innerHTML = arrowsSec;
+        checkWarningArrows();
+        if (arrowsSec <= 0) {
+            arrowsSec = arrowsCooldown;
+        }
+    }, 1000);
+}
+function arrowsCancel(){
+    arrowsSec = arrowsCooldown;
+    document.getElementById('arrowsTimer').innerHTML = "--";
+    checkWarningArrows();
+    clearInterval(arrowsCountdown);
 }
