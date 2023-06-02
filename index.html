@@ -1,74 +1,72 @@
 
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script src="kalosTimer.js"></script>
-<div>
-  <div class="graphics" id="phase">
-    <div class="info" onclick="toggleInfo()">
-      how to use
-    </div>
-    <div class="collapsible" id="infoText">
-      <p class="left text">Press the "P2 Start" button one or two seconds after the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
-
-      <p class="left text">Ideally, white buttons are never pressed. They're to adjust timings, phase, and number of systems in case of misclicks by the timer.</p>
-
-      <p class="left text">Black buttons, Cleanse, FMA, Breath, Dive, Bombs, Lasers, and Arrows should be pressed at the exact time.</p>
-
-      <p class="left text">Bombs, Lasers, and Arrows timers will loop automatically. Bombs will most likely de-sync depending on server lag.</p>
-
-      <p class="left text">FMA timer may not be accurate with a Wild Hunter or Zero in your party.</p>
-
-      <p class="left text">Message Saltette#4956 on Discord to report bugs. If you have a video of phasing Kalos during groggy, please send it in.</p>
-    </div>
-    <h1 id="headline">
-      P2 Kalos Timer
-    </h1>
-    <button class="button1" onclick="startPhase(3)">
-      <p class="start">P2 Start</p>
-    </button>
-    <p class="left" style="margin-left: 20px; margin-right: 20px;">
-      HP: 
-      <button id="phase4Button" class="button2 hp" onclick="changePhase(4)" style="margin-left: 8px;">
-        <p>0%-25%</p>
-      </button>
-      <button id="phase3Button" class="button2 hp" onclick="changePhase(3)">
-        <p>26%-50%</p>
-      </button>
-      <button id="phase2Button" class="button2 hp" onclick="changePhase(2)">
-        <p>51%-75%</p>
-      </button>
-      <button id="phase1Button" class="button2 hp" onclick="changePhase(1)">
-        <p>76%-100%</p>
-      </button>
-    </p>
-    <p class="left" style="margin-left: 20px; margin-right: 20px;">
-      Systems:
-      <b id="systemsOnline">0</b>
-      <button class="button2 systems" onclick="incSystems()" style="margin-left: 8px;">
-        <p>+</p>
-      </button>
-      <button class="button2 systems" onclick="decSystems()">
-        <p>-</p>
-      </button>
-    </p>
-    <p class="left" id="bindBox" style="margin-left: 20px; margin-right: 20px;">
-      Bind: 
-      <button class="button1" onclick="bind(15)" style="margin-left: 8px;">
-        <p>15 seconds</p>
-      </button>
-      <button class="button1" onclick="bind(10)">
-        <p>10 seconds</p>
-      </button>
-    </p>
-    <p class="left" id="testBox" style="margin-left: 20px; margin-right: 20px;">
-      Test: 
-      <button class="button1 test" onclick="phaseTest()" style="margin-left: 8px;">
-        <p>Start</p>
-      </button>
-      <button class="button1 test" onclick="failTest()">
-        <p>Fail</p>
-      </button>
-    </p>
+<div class="graphics" id="phase">
+  <div class="info" onclick="toggleInfo()">
+    how to use
   </div>
+  <div class="collapsible" id="infoText">
+    <p class="left text">Press the "P2 Start" button one or two seconds after the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
+
+    <p class="left text">Ideally, white buttons are never pressed. They're to adjust timings, phase, and number of systems in case of misclicks by the timer.</p>
+
+    <p class="left text">Black buttons (Binds, Test Start, Test Fail), Cleanse, FMA, Breath, Dive, Bombs, Lasers, and Arrows should be pressed at the exact time.</p>
+
+    <p class="left text">Bombs, Lasers, and Arrows timers will loop automatically. Bombs will most likely de-sync depending on server lag.</p>
+
+    <p class="left text">FMA timer may not be accurate with a Wild Hunter or Zero in your party.</p>
+
+    <p class="left text">Message Saltette#4956 on Discord to report bugs. If you have a video of phasing Kalos during groggy, please send it in.</p>
+  </div>
+  <h1 id="headline">
+    P2 Kalos Timer
+  </h1>
+  <button class="button1" onclick="startPhase(3)">
+    <p class="start">P2 Start</p>
+  </button>
+  <p class="left" style="margin-left: 20px; margin-right: 20px;">
+    HP: 
+    <button id="phase4Button" class="button2 hp" onclick="changePhase(4)" style="margin-left: 8px;">
+      <p>0%-25%</p>
+    </button>
+    <button id="phase3Button" class="button2 hp" onclick="changePhase(3)">
+      <p>26%-50%</p>
+    </button>
+    <button id="phase2Button" class="button2 hp" onclick="changePhase(2)">
+      <p>51%-75%</p>
+    </button>
+    <button id="phase1Button" class="button2 hp" onclick="changePhase(1)">
+      <p>76%-100%</p>
+    </button>
+  </p>
+  <p class="left" style="margin-left: 20px; margin-right: 20px;">
+    Systems:
+    <b id="systemsOnline">0</b>
+    <button class="button2 systems" onclick="incSystems()" style="margin-left: 8px;">
+      <p>+</p>
+    </button>
+    <button class="button2 systems" onclick="decSystems()">
+      <p>-</p>
+    </button>
+  </p>
+  <p class="left" id="bindBox" style="margin-left: 20px; margin-right: 20px;">
+    Bind: 
+    <button class="button1" onclick="bind(15)" style="margin-left: 8px;">
+      <p>15 seconds</p>
+    </button>
+    <button class="button1" onclick="bind(10)">
+      <p>10 seconds</p>
+    </button>
+  </p>
+  <p class="left" id="testBox" style="margin-left: 20px; margin-right: 20px;">
+    Test: 
+    <button class="button1 test" onclick="phaseTest()" style="margin-left: 8px;">
+      <p>Start</p>
+    </button>
+    <button class="button1 test" onclick="failTest()">
+      <p>Fail</p>
+    </button>
+  </p>
 </div>
 
 <div class="grid-container2">
@@ -89,7 +87,7 @@
   </div>
   <div class="item1" id="lasersBox" onclick="lasersTimer()">
     <div class="counter" id="lasersTimer" style="font-size: 31px">--</div>
-    <div style="padding-top: 0px">
+    <div class="module-overlay-float">
       <button class="button5" style="margin-bottom:4px">
         Lasers
       </button>
@@ -100,7 +98,7 @@
   </div>
   <div class="item1" id="arrowsBox" onclick="arrowsTimer()">
     <div class="counter" id="arrowsTimer" style="font-size: 31px;">--</div>
-    <div style="padding-top: 0px">
+    <div class="module-overlay-float">
       <button class="button5" style="margin-bottom:4px">
         Arrows
       </button>

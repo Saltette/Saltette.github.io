@@ -1,7 +1,7 @@
 
   body {margin: 0px 10px; background-color: #4d4d4d;}
   h1 {text-align: center; font-size: 36;}
-  div {text-align: center; padding: 10px 0px; user-select: none;}
+  div {text-align: center; user-select: none;}
   p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
   p.left {text-align:left;}
   p.text {font-weight: normal;}
@@ -14,21 +14,30 @@
   .counter {
     display: block;
     font-size: 42px;
-    margin-top: 15px;
-    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 8px;
     margin-left: 0px;
     margin-right: 0px;
-    padding: 8px 0px;
+    padding: 10px 0px;
     font-weight: bold;
   }
+  .module-overlay-float{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
   .item1 { /* clickable skills */
+    position: relative;
     border: 3px solid transparent; 
     display: block; 
     align-items: center; 
     justify-content: center;
-    padding: 0px 0px; 
+    padding: 10px 0px; 
     cursor: pointer;
-    background-color:#ccc;
+    background-color: #ccc;
     border-radius: 3px;
   }
   .item1:hover {
@@ -42,7 +51,6 @@
     max-width: 806px; 
     display: grid; 
     grid-gap: 10px; 
-
   }
   .grid-container1 {
     grid-template-columns: 1fr 1fr;
@@ -51,6 +59,7 @@
     grid-template-columns: 1fr 90px 90px;
   }
   .button1, .button2, .button3, .button4, .button5 {
+    position: relative;
     font-weight: bold;
     border: none;
     color: black;
@@ -72,6 +81,7 @@
   .button1.test {width: 60px;}
   .button2 { /* cancel for for item1 and item2 */
     background-color: white;
+    z-index: 1;
   }
   .button2:hover {
     filter: brightness(95%);
@@ -79,23 +89,27 @@
   .button2.hp {width:92px;}
   .button2.systems {width:38px;}
   .button3 { /* blend into background for item1 and item2 */
-    background-color: #ccc;
+    background-color: transparent;
   }
   .button4 { /* cancel for item3 */
     background-color: white;
     padding: 7px 16px;
+    z-index: 1;
   }
   .button4:hover {
     filter: brightness(95%);
   }
   .button5 { /* blend into background for item3 */
-    background-color: #ccc;
+    background-color: transparent;
     padding: 7px 16px;
   }
   .graphics {
     background-color:#9a9a9a;
+    position: relative;
     margin:auto; 
-    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 0px;
     min-width: 418px;
     max-width: 806px; 
     background-size: 650px;
@@ -115,7 +129,8 @@
   .info{
     font-weight: bold;
     position: absolute;
-    margin-left: 10px;
+    right: 0;
+    margin-right: 10px;
     margin-top: 0px;
     font-size: 12px;
     background: #F9C3C3;
@@ -129,8 +144,8 @@
   }
   .collapsible{
     position: absolute;
-    margin-left: 10px;
-    margin-right: 18px;
+    right: 0;
+    margin-right: 10px;
     margin-top: 25px;
     max-width: 269px;
     font-size: 12;

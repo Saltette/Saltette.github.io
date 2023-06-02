@@ -450,13 +450,11 @@ function checkWarningFMA() {
         document.getElementById("fmaTimer").style.color = 'red';
         document.getElementById("fmaBox").style.border = '3px solid red';
         document.getElementById("fmaBox").style.background = '#F9C3C3';
-        document.getElementById("fmaButton").style.background = '#F9C3C3';
     }
     else {
         document.getElementById("fmaTimer").style.color = 'black';
         document.getElementById("fmaBox").style.border = '3px solid transparent';
         document.getElementById("fmaBox").style.background = '#ccc';
-        document.getElementById("fmaButton").style.background = '#ccc';
     }
 }
 function fmaTimer(sec) {
@@ -501,18 +499,15 @@ function checkWarningSystemFail() {
         if (systemFailSec <= warningSystemFail) {
             document.getElementById("systemFailBox").style.border = '3px solid red';
             document.getElementById("systemFailBox").style.background = '#F9C3C3';
-            document.getElementById("cleanseButton").style.background = '#F9C3C3';
         }
         else {
             document.getElementById("systemFailBox").style.border = '3px solid transparent';
             document.getElementById("systemFailBox").style.background = '#ccc';
-            document.getElementById("cleanseButton").style.background = '#ccc';
         }
     } else {
         document.getElementById("systemFailTimer").style.color = 'black';
         document.getElementById("systemFailBox").style.border = '3px solid transparent';
         document.getElementById("systemFailBox").style.background = '#ccc';
-        document.getElementById("cleanseButton").style.background = '#ccc';
     }
 }
 
@@ -556,11 +551,11 @@ function systemCleanse() {
 function checkWarningLasers() {
     if (lasersSec <= warningLasers) {
         document.getElementById("lasersTimer").style.color = 'red';
-        // document.getElementById("lasersBox").style.border = '3px solid red';
+        //document.getElementById("lasersBox").style.border = '3px solid red';
     }
     else {
         document.getElementById("lasersTimer").style.color = 'black';
-        // document.getElementById("lasersBox").style.border = '3px solid transparent';
+        //document.getElementById("lasersBox").style.border = '3px solid transparent';
     }
 }
 function lasersTimer(){
@@ -587,11 +582,11 @@ function lasersCancel(){
 function checkWarningArrows() {
     if (arrowsSec <= warningArrows) {
         document.getElementById("arrowsTimer").style.color = 'red';
-        // document.getElementById("arrowsBox").style.border = '3px solid red';
+        //document.getElementById("arrowsBox").style.border = '3px solid red';
     }
     else {
         document.getElementById("arrowsTimer").style.color = 'black';
-        // document.getElementById("arrowsBox").style.border = '3px solid transparent';
+        //document.getElementById("arrowsBox").style.border = '3px solid transparent';
     }
 }
 function arrowsTimer(){
