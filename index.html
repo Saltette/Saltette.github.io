@@ -71,22 +71,23 @@
 
 <div class="grid-container2">
   <div class="item1" id="systemFailBox" onclick="systemCleanse()">
+    <div class="item1-background-cover"></div>
     <div class="counter" id="systemFailTimer">--</div>
-    <div>
-      <div class="systemdots" id="system1"></div>
-      <div class="systemdots" id="system2"></div>
-      <div class="systemdots" id="system3"></div>
-      <div class="systemdots" id="system4"></div>
-      <button id="cleanseButton" class="button3">
-        <p>Cleanse</p>
-      </button>  
-      <button class="button2" onclick="systemFailTimer(60); event.stopPropagation()">
-        <p>Reset</p>
-      </button>
-    </div>
+    <div class="systemdots" id="system1"></div>
+    <div class="systemdots" id="system2"></div>
+    <div class="systemdots" id="system3"></div>
+    <div class="systemdots" id="system4"></div>
+    <button id="cleanseButton" class="button3">
+      <p>Cleanse</p>
+    </button> 
+    <button class="button2" onclick="systemFailTimer(60); event.stopPropagation()">
+      <div class="button-cover"></div>
+      <p>Reset</p>
+    </button>
   </div>
   <div class="item1" id="lasersBox" onclick="lasersTimer()">
-    <div class="counter" id="lasersTimer" style="font-size: 31px">--</div>
+    <div class="item1-background-cover"></div>
+    <div class="counter" id="lasersTimer" style="font-size: 31px;">--</div>
     <div class="module-overlay-float">
       <button class="button5" style="margin-bottom:4px">
         Lasers
@@ -97,6 +98,7 @@
     </div>
   </div>
   <div class="item1" id="arrowsBox" onclick="arrowsTimer()">
+    <div class="item1-background-cover"></div>
     <div class="counter" id="arrowsTimer" style="font-size: 31px;">--</div>
     <div class="module-overlay-float">
       <button class="button5" style="margin-bottom:4px">
@@ -110,6 +112,7 @@
 </div>
 <div class="grid-container1">
   <div class="item1" id="fmaBox" onclick="fmaAttack()">
+    <div class="item1-background-cover"></div>
     <div class="counter" id="fmaTimer">--</div>
       <div>
         <button id="fmaButton" class="button3">
@@ -121,6 +124,7 @@
       </div>
   </div>
   <div class="item1" id="breathBox" onclick="breathTimer()">
+    <div class="item1-background-cover"></div>
     <div class="counter" id="breathTimer">--</div>
     <div>
       <button class="button3">
@@ -132,6 +136,7 @@
     </div>
   </div>
   <div class="item1" id="bombBox" onclick="bombTimer()">
+    <div class="item1-background-cover"></div>
     <div class="counter" id="bombTimer">--</div>
     <div>
       <button class="button3">
@@ -143,6 +148,7 @@
     </div>
   </div>
   <div class="item1" id="diveBox" onclick="diveTimer()">
+    <div class="item1-background-cover"></div>
     <div class="counter" id="diveTimer">--</div>
     <div>
       <button class="button3">

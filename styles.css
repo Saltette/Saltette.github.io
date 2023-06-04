@@ -28,6 +28,7 @@
     right: 0;
     margin-bottom: 10px;
     justify-content: center;
+    pointer-events: none;
   }
   .item1 { /* clickable skills */
     position: relative;
@@ -40,8 +41,19 @@
     background-color: #ccc;
     border-radius: 3px;
   }
-  .item1:hover {
-    filter: brightness(95%);
+  .item1-background-cover {
+    position: absolute;
+    border: 3px solid black; 
+    top: -3;
+    left: -3;
+    height: 100%;
+    width: 100%;
+    opacity: 0%;
+    background-color: black;
+    border-radius: 3px;
+  }
+  .item1-background-cover:hover {
+    opacity: 10%;
   }
   .grid-container1, .grid-container2 {
     margin: auto; 
@@ -76,32 +88,34 @@
     color: white;
   }
   .button1:hover {
-    filter: brightness(90%);
-  }
+    filter: brightness(85%);
+  }  
   .button1.test {width: 60px;}
   .button2 { /* cancel for for item1 and item2 */
     background-color: white;
-    z-index: 1;
   }
   .button2:hover {
-    filter: brightness(95%);
+    filter: brightness(92%);
   }
   .button2.hp {width:92px;}
   .button2.systems {width:38px;}
   .button3 { /* blend into background for item1 and item2 */
     background-color: transparent;
+    pointer-events: none;
   }
   .button4 { /* cancel for item3 */
     background-color: white;
     padding: 7px 16px;
     z-index: 1;
+    pointer-events: all;
   }
   .button4:hover {
-    filter: brightness(95%);
+    filter: brightness(92%);
   }
   .button5 { /* blend into background for item3 */
     background-color: transparent;
     padding: 7px 16px;
+    pointer-events: none;
   }
   .graphics {
     background-color:#9a9a9a;
