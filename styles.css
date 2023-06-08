@@ -2,7 +2,7 @@
   body {margin: 0px 10px; background-color: #4d4d4d;}
   h1 {text-align: center; font-size: 36;}
   div {text-align: center; user-select: none;}
-  p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
+  p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px; font-family: Arial, Helvetica, sans-serif;}
   p.left {text-align:left;}
   p.text {font-weight: normal;}
   p.start {
@@ -10,6 +10,7 @@
     margin-bottom: 15px;
     margin-left: 10px;
     margin-right: 10px;
+    color: #F9C3C3;
   }
   .counter {
     display: block;
@@ -83,27 +84,28 @@
     border-radius: 3px;
     cursor: pointer;
   }
-  .button1 { /* black buttons for header */
+  .button1 { /* black buttons in header */
     background-color: #4d4d4d;
     color: white;
   }
   .button1:hover {
     filter: brightness(85%);
   }  
-  .button1.test {width: 60px;}
-  .button2 { /* cancel for for item1 and item2 */
+  .button1.test {width: 60px; color: yellow;}
+  .button1.bind {color: #62d7ff}
+  .button2 { /* cancel button for large modules and white buttons in header */
     background-color: white;
   }
   .button2:hover {
     filter: brightness(92%);
   }
   .button2.hp {width:92px;}
-  .button2.systems {width:38px;}
-  .button3 { /* blend into background for item1 and item2 */
+  .button2.systems {padding: 0px 0px; width:30px; height: 18px; font-size: 8px;}
+  .button3 { /* blend into background button for large modules */
     background-color: transparent;
     pointer-events: none;
   }
-  .button4 { /* cancel for item3 */
+  .button4 { /* cancel button for small modules */
     background-color: white;
     padding: 7px 16px;
     z-index: 1;
@@ -112,7 +114,7 @@
   .button4:hover {
     filter: brightness(92%);
   }
-  .button5 { /* blend into background for item3 */
+  .button5 { /* blend into background button for small modules */
     background-color: transparent;
     padding: 7px 16px;
     pointer-events: none;
@@ -152,6 +154,7 @@
     padding: 3px 10px;
     border-radius: 100px; 
     cursor: pointer;
+    z-index: 999;
   }
   .info:hover{
     filter: brightness(105%);
@@ -166,4 +169,10 @@
     background: #F9C3C3;
     display: none;
     padding: 0px 15px; 
+    z-index: 999;
+  }
+  .updown-container{
+    display: inline-block;
+    width: 30px;
+    vertical-align: middle;
   }
