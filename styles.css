@@ -1,8 +1,8 @@
 
-  body {margin: 0px 10px; background-color: #4d4d4d;}
-  h1 {text-align: center; font-size: 36;}
+  body {margin: 0px 10px; background-color: #4d4d4d; font-family: Arial, Helvetica, sans-serif;}
+  h1 {text-align: center; font-size: 36; font-family:'Times New Roman', Times, serif;}
   div {text-align: center; user-select: none;}
-  p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px; font-family: Arial, Helvetica, sans-serif;}
+  p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
   p.left {text-align:left;}
   p.text {font-weight: normal;}
   p.start {
@@ -21,6 +21,7 @@
     margin-right: 0px;
     padding: 10px 0px;
     font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
   }
   .module-overlay-float{
     position: absolute;
