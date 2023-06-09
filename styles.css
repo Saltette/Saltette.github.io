@@ -149,22 +149,22 @@
     right: 0;
     margin-right: 10px;
     margin-top: 0px;
-    font-size: 12px;
+    font-size: 11px;
     background: #F9C3C3;
     display: block;
-    padding: 3px 10px;
-    border-radius: 100px; 
+    padding: 3px 12px;
+    border-radius: 10px; 
     cursor: pointer;
     z-index: 999;
   }
   .info:hover{
-    filter: brightness(105%);
+    filter: brightness(110%);
   }
   .collapsible{
     position: absolute;
     right: 0;
     margin-right: 10px;
-    margin-top: 25px;
+    margin-top: 22px;
     max-width: 269px;
     font-size: 12;
     background: #F9C3C3;
