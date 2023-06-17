@@ -92,7 +92,7 @@
   .button1:hover {
     filter: brightness(85%);
   }  
-  .button1.test {width: 60px; color: yellow;}
+  .button1.test {min-width: 60px; color: yellow;}
   .button1.bind {color: #62d7ff}
   .button2 { /* cancel button for large modules and white buttons in header */
     background-color: white;
@@ -100,8 +100,8 @@
   .button2:hover {
     filter: brightness(92%);
   }
-  .button2.hp {width:92px;}
-  .button2.systems {padding: 0px 0px; width:30px; height: 18px; font-size: 8px;}
+  .button2.hp {min-width:92px;}
+  .button2.systems {padding: 0px 0px; min-width:30px; height: 18px; font-size: 8px;}
   .button3 { /* blend into background button for large modules */
     background-color: transparent;
     pointer-events: none;
