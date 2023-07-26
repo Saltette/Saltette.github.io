@@ -133,6 +133,7 @@
     background-image: url("images/kaloshimself.png");
     background-position: bottom right;
     background-repeat: no-repeat;
+    border-radius: 3px;
   }
   .systemdots{
     border-radius: 10px;
@@ -153,7 +154,7 @@
     background: #F9C3C3;
     display: block;
     padding: 3px 12px;
-    border-radius: 10px; 
+    border-radius: 3px; 
     cursor: pointer;
     z-index: 999;
   }
@@ -171,6 +172,7 @@
     display: none;
     padding: 0px 15px; 
     z-index: 999;
+    border-radius: 3px;
   }
   .updown-container{
     display: inline-block;
