@@ -27,6 +27,8 @@ const groggyDuration = 20;
 const testDuration = 50;
 const bind10Sec = 10;
 const bind15Sec = 15;
+const editDisplaySec = 2;
+const bindClickLockout = 2;
 
 var phase = minPhase;
 
@@ -38,6 +40,8 @@ var systemFailCountdown;
 var ufoCountdown;
 var lasersCountdown;
 var arrowsCountdown;
+var fmaEditCountdown;
+var systemEditCountdown;
 
 var bombSec;
 var breathSec;
@@ -47,6 +51,8 @@ var systemFailSec = systemCooldown;
 var ufoSec;
 var lasersSec;
 var arrowsSec;
+var fmaEditSec;
+var systemEditSec;
 
 var numSystemsOnline = 0;
 
@@ -56,9 +62,17 @@ var phaseSec = 0;
 var bindCountdown;
 var bindSec = 0;
 
+var fmaTimerEdit = '';
+var systemTimerEdit = '';
+
 var visibleInfo = false;
 
 var fmaTimerOn = false;
+
+var bindClickLockoutSec;
+var bindClickLockoutCountdown;
+
+
 
 function toggleInfo() {
     if (visibleInfo == false) {
@@ -101,6 +115,16 @@ function changePhase(num) {
 }
 
 function startPhase() {
+    fmaTimerEdit = '';
+    systemTimerEdit = '';
+    fmaEditSec = 0;
+    clearInterval(fmaEditCountdown);
+    document.getElementById('fma-edit').style.opacity = '0%';
+    systemEditSec = 0;
+    clearInterval(systemEditCountdown);
+    document.getElementById('system-edit').style.opacity = '0%';
+    bindClickLockoutSec = 0;
+    clearInterval(bindClickLockoutCountdown);
     fmaTimerOn = true;
     numSystemsOnline = 0;
     phaseSec = 0;
@@ -119,6 +143,7 @@ function startPhase() {
     systemFailTimer(systemCooldown);
     numSystemsOnline = minSystems;
     document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+    
     
 
     checkWarningBomb();
@@ -166,6 +191,7 @@ function phaseTest(){
         // if phased during groggy, fma and system time will be reduced by the timing delay lost from not using all of the last groggy
         // i have no confirmed video of this mechanic and am assuming this is how it works for now
         var lostGroggyTime = phaseSec;
+        
 
         if (bindSec > 0) {
             clearInterval(bindCountdown);
@@ -173,6 +199,7 @@ function phaseTest(){
             bindIndicator();
         }
         phaseSec = testDuration;
+
         testIndicator();
         clearInterval(phaseCountdown);
         phaseCountdown = setInterval(function(){
@@ -184,6 +211,11 @@ function phaseTest(){
         }, 1000);
             
         if (fmaTimerOn == true) {
+            fmaTimerEdit = '+' + phaseSec;
+            document.getElementById('fma-edit').style.borderLeft = '3px solid yellow';
+            document.getElementById('fma-edit').style.opacity = '75%';
+            fmaEditTimer();
+
             clearInterval(fmaCountdown);
             fmaSec = fmaSec + testDuration - lostGroggyTime;
             fmaTimer(fmaSec);
@@ -191,6 +223,11 @@ function phaseTest(){
         }
 
         if (numSystemsOnline != maxSystems) {
+            systemTimerEdit = '+' + phaseSec;
+            document.getElementById('system-edit').style.borderLeft = '3px solid yellow';
+            document.getElementById('system-edit').style.opacity = '75%';
+            systemEditTimer();
+
             clearInterval(systemFailCountdown);
             systemFailSec = systemFailSec + testDuration - lostGroggyTime;
             systemFailTimer(systemFailSec);
@@ -207,6 +244,12 @@ function failTest() {
     if (phaseSec > groggyDuration-5) {
         if (fmaTimerOn == true) {
             clearInterval(fmaCountdown);
+
+            fmaTimerEdit = '-' + phaseSec;
+            document.getElementById('fma-edit').style.borderLeft = '3px solid yellow';
+            document.getElementById('fma-edit').style.opacity = '75%';
+            fmaEditTimer();
+            
             if (fmaSec-phaseSec <= 1) {
                 fmaSec = 0;
                 document.getElementById('fmaTimer').innerHTML = fmaSec;
@@ -217,6 +260,12 @@ function failTest() {
         }
 
         if (numSystemsOnline != maxSystems) {
+            
+            systemTimerEdit = '-' + phaseSec;
+            document.getElementById('system-edit').style.borderLeft = '3px solid yellow';
+            document.getElementById('system-edit').style.opacity = '75%';
+            systemEditTimer();
+
             clearInterval(systemFailCountdown);
             if (systemFailSec-phaseSec <= 1) {
                 incSystems();
@@ -236,6 +285,19 @@ function failTest() {
     }
 }
 
+function systemEditTimer() {
+    clearInterval(systemEditCountdown);
+    document.getElementById('system-edit').innerHTML = systemTimerEdit;
+    systemEditSec = editDisplaySec;
+    systemEditCountdown = setInterval(function(){
+        systemEditSec--;
+        if (systemEditSec <= 0) {
+            clearInterval(systemEditCountdown);
+            document.getElementById('system-edit').style.opacity = '25%';
+        }
+    }, 1000);
+}
+
 function testIndicator() {
     if (phaseSec > groggyDuration) {
         document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png'), url('images/kalostest.png')";
@@ -251,8 +313,10 @@ function testIndicator() {
 }
 
 function bind(sec){
-    if (bindSec <= 0 && phaseSec <= 0) {
-        bindSec = sec;
+    if (bindClickLockoutSec <= 0 && phaseSec <= 0) {
+        bindClickLockoutTimer();
+        extraBindTime = bindSec; //this is in case bind is used during a previous bind duration
+        bindSec = sec + extraBindTime;
         bindIndicator();
         clearInterval(bindCountdown);
         bindCountdown = setInterval(function(){
@@ -263,24 +327,56 @@ function bind(sec){
             bindIndicator();
         }, 1000);
         if (fmaTimerOn == true) {
+            fmaTimerEdit = '+' + sec;
+            document.getElementById('fma-edit').style.borderLeft = '3px solid #62d7ff';
+            document.getElementById('fma-edit').style.opacity = '75%';
+            fmaEditTimer();
+
             clearInterval(fmaCountdown);
-            fmaSec += bindSec;
+            fmaSec += sec;
             fmaTimer(fmaSec);
             checkWarningFMA();
         }
     }
 }
 
+function fmaEditTimer() {
+    clearInterval(fmaEditCountdown);
+    document.getElementById('fma-edit').innerHTML = fmaTimerEdit;
+    fmaEditSec = editDisplaySec;
+    fmaEditCountdown = setInterval(function(){
+        fmaEditSec--;
+        if (fmaEditSec <= 0) {
+            clearInterval(fmaEditCountdown);
+            document.getElementById('fma-edit').style.opacity = '25%';
+        }
+    }, 1000);
+}
 
-function bindIndicator() { 
+function bindClickLockoutTimer() {
+    clearInterval(bindClickLockoutCountdown);
+    bindClickLockoutSec = bindClickLockout;
+    bindClickLockoutCountdown = setInterval(function(){
+        bindClickLockoutSec--;
+        if (bindClickLockoutSec <= 0) {
+            clearInterval(bindClickLockoutCountdown);
+        }
+    }, 1000);
+}
+
+function bindIndicator() {
     if (bindSec > 0) {
         document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png')";
         document.getElementById('bindBox').style.color = '#62d7ff';
     } else {
         document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png')";
         document.getElementById('bindBox').style.color = 'black';
+        
     }
 }
+
+
+
 
 function systemIndicator() {
     if (numSystemsOnline >= 1) {
@@ -326,6 +422,7 @@ function checkWarningBomb() {
     }
 }
 function bombTimer(){
+    bindIndicator();
     bombSec = bombCooldown;
     document.getElementById('bombTimer').innerHTML = bombSec;
     checkWarningBomb();
@@ -536,6 +633,7 @@ function systemFailCancel(){
 }
 function systemCleanse() {
     if (numSystemsOnline == maxSystems) {
+
         systemFailTimer(systemCooldown + phaseSec);
     }
     decSystems();
