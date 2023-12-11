@@ -8,15 +8,15 @@
   <div class="collapsible" id="infoText">
     <p class="left text"><b>If this is your first time using this timer, it's recommended to only use P2 Start, Binds, Test, Cleanse, FMA buttons to time systems and FMA with everything else cancelled.</b></p>
 
-    <p class="left text">Press the "P2 Start" button one or two seconds after the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
+    <p class="left text">Press the "P2 Start" button once the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
     
-    <p class="left text">Black buttons, Cleanse, FMA, Breath, Dive, Bombs, Lasers, and Arrows should be pressed when they occur.</p>
+    <p class="left text">Black buttons, Cleanse, FMA, Breath, Dive, Lasers, and Arrows should be pressed when they occur.</p>
 
     <p class="left text">Ideally, white buttons are never pressed. They're to adjust timings, phase, and number of systems in case of misclicks by the timer.</p>
 
     <p class="left text" style="font-size: 10">Binds affect FMA timer. Test Start and Fail affect FMA timer and systems timer. FMA may affect systems timer. HP % affects breath timer.</p>
 
-    <p class="left text" style="font-size: 10">Bombs, Lasers, and Arrows timers will loop automatically. Bombs will de-sync depending on server lag.</p>
+    <p class="left text" style="font-size: 10">Lasers and Arrows timers will loop automatically.</p>
 
     <p class="left text" style="font-size: 10">Message 'saltette' on Discord for questions or bug reports. If you have a video of phasing Kalos during groggy, please send it.</p>
   </div>
@@ -115,7 +115,7 @@
     </div>
   </div>
 </div>
-<div class="grid-container1">
+<div class="grid-container3">
   <div class="item1" id="fmaBox" onclick="fmaAttack()">
     <div class="item1-background-cover"></div>
     <div class="fma-timer-edit" id="fma-edit"></div>
@@ -129,6 +129,8 @@
         </button>
       </div>
   </div>
+</div>
+<div class="grid-container1">
   <div class="item1" id="breathBox" onclick="breathTimer()">
     <div class="item1-background-cover"></div>
     <div class="counter" id="breathTimer">--</div>
@@ -137,18 +139,6 @@
         <p>Breath</p>
       </button>
       <button class="button2" onclick="breathCancel(); event.stopPropagation()">
-        <p>Cancel</p>
-      </button>
-    </div>
-  </div>
-  <div class="item1" id="bombBox" onclick="bombTimer()">
-    <div class="item1-background-cover"></div>
-    <div class="counter" id="bombTimer">--</div>
-    <div>
-      <button class="button3">
-        <p>Bombs</p>
-      </button>
-      <button class="button2" onclick="bombCancel(); event.stopPropagation()">
         <p>Cancel</p>
       </button>
     </div>
