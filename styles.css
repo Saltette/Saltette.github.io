@@ -1,198 +1,201 @@
 
-  body {margin: 0px 10px; background-color: #4d4d4d; font-family: Arial, Helvetica, sans-serif;}
-  h1 {text-align: center; font-size: 36; font-family:'Times New Roman', Times, serif;}
-  div {text-align: center; user-select: none;}
-  p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
-  p.left {text-align:left;}
-  p.text {font-weight: normal;}
-  p.start {
-    margin-top:15px;
-    margin-bottom: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #F9C3C3;
-  }
-  .counter {
-    display: block;
-    font-size: 42px;
-    margin-top: 0px;
-    margin-bottom: 8px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding: 10px 0px;
-    font-weight: bold;
-    font-family:'Times New Roman', Times, serif;
-  }
-  .module-overlay-float{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-bottom: 10px;
-    justify-content: center;
-    pointer-events: none;
-  }
-  .item1 { /* clickable skills */
-    position: relative;
-    border: 3px solid transparent; 
-    display: block; 
-    align-items: center; 
-    justify-content: center;
-    padding: 10px 0px; 
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: 3px;
-  }
-  .item1-background-cover {
-    position: absolute;
-    border: 3px solid black; 
-    top: -3;
-    left: -3;
-    height: 100%;
-    width: 100%;
-    opacity: 0%;
-    background-color: black;
-    border-radius: 3px;
-  }
-  .item1-background-cover:hover {
-    opacity: 8%;
-  }
-  .grid-container1, .grid-container2 {
-    margin: auto; 
-    padding-top: 0px;
-    padding-bottom: 10px;
-    min-width: 418px;
-    max-width: 806px; 
-    display: grid; 
-    grid-gap: 10px; 
-  }
-  .grid-container1 {
-    grid-template-columns: 1fr 1fr;
-  }
-  .grid-container2 {
-    grid-template-columns: 1fr 90px 90px;
-  }
-  .button1, .button2, .button3, .button4, .button5 {
-    position: relative;
-    font-weight: bold;
-    border: none;
-    color: black;
-    padding: 1px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .button1 { /* black buttons in header */
-    background-color: #4d4d4d;
-    color: white;
-  }
-  .button1:hover {
-    filter: brightness(85%);
-  }  
-  .button1.test {min-width: 60px; color: yellow;}
-  .button1.bind {color: #62d7ff}
-  .button2 { /* cancel button for large modules and white buttons in header */
-    background-color: white;
-  }
-  .button2:hover {
-    filter: brightness(92%);
-  }
-  .button2.hp {min-width:92px;}
-  .button2.systems {padding: 0px 0px; min-width:30px; height: 18px; font-size: 8px;}
-  .button3 { /* blend into background button for large modules */
-    background-color: transparent;
-    pointer-events: none;
-  }
-  .button4 { /* cancel button for small modules */
-    background-color: white;
-    padding: 7px 16px;
-    z-index: 1;
-    pointer-events: all;
-  }
-  .button4:hover {
-    filter: brightness(92%);
-  }
-  .button5 { /* blend into background button for small modules */
-    background-color: transparent;
-    padding: 7px 16px;
-    pointer-events: none;
-  }
-  .graphics {
-    background-color:#9a9a9a;
-    position: relative;
-    margin:auto; 
-    margin-top: 25px;
-    margin-bottom: 10px;
-    padding: 10px 0px;
-    min-width: 418px;
-    max-width: 806px; 
-    background-size: 650px;
-    background-image: url("images/kaloshimself.png");
-    background-position: bottom right;
-    background-repeat: no-repeat;
-    border-radius: 3px;
-  }
-  .systemdots{
-    border-radius: 10px;
-    background: black;
-    height: 10px;
-    width: 10px;
-    padding: 0px 0px;
-    margin-left: 3px;
-    display: inline-block;
-  }
-  .info{
-    font-weight: bold;
-    position: absolute;
-    right: 0;
-    margin-right: 10px;
-    margin-top: 0px;
-    font-size: 11px;
-    background: #F9C3C3;
-    display: block;
-    padding: 3px 12px;
-    border-radius: 3px; 
-    cursor: pointer;
-    z-index: 999;
-  }
-  .info:hover{
-    filter: brightness(110%);
-  }
-  .collapsible{
-    position: absolute;
-    right: 0;
-    margin-right: 10px;
-    margin-top: 22px;
-    max-width: 269px;
-    font-size: 12;
-    background: #F9C3C3;
-    display: none;
-    padding: 0px 15px; 
-    z-index: 999;
-    border-radius: 3px;
-  }
-  .updown-container{
-    display: inline-block;
-    width: 30px;
-    vertical-align: middle;
-  }
-  .fma-timer-edit, .system-timer-edit{
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 0px;
-    font-size: 14px;
-    color: black;
-    display: block;
-    padding: 1px 4px;
-    cursor: pointer;
-    z-index: 999;
-    border-left: none;
-    border: none;
-    opacity: 75%; 
-  }
+body {margin: 0px 10px; background-color: #4d4d4d; font-family: Arial, Helvetica, sans-serif;}
+h1 {text-align: center; font-size: 36; font-family:'Times New Roman', Times, serif;}
+div {text-align: center; user-select: none;}
+p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
+p.left {text-align:left;}
+p.text {font-weight: normal;}
+p.start {
+  margin-top:15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #F9C3C3;
+}
+.counter {
+  display: block;
+  font-size: 42px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 10px 0px;
+  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+}
+.module-overlay-float{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 10px;
+  justify-content: center;
+  pointer-events: none;
+}
+.item1 { /* clickable skills */
+  position: relative;
+  border: 3px solid transparent; 
+  display: block; 
+  align-items: center; 
+  justify-content: center;
+  padding: 10px 0px; 
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 3px;
+}
+.item1-background-cover {
+  position: absolute;
+  border: 3px solid black; 
+  top: -3;
+  left: -3;
+  height: 100%;
+  width: 100%;
+  opacity: 0%;
+  background-color: black;
+  border-radius: 3px;
+}
+.item1-background-cover:hover {
+  opacity: 8%;
+}
+.grid-container1, .grid-container2, .grid-container3{
+  margin: auto; 
+  padding-top: 0px;
+  padding-bottom: 10px;
+  min-width: 418px;
+  max-width: 806px; 
+  display: grid; 
+  grid-gap: 10px; 
+}
+.grid-container1 {
+  grid-template-columns: 1fr 1fr;
+}
+.grid-container2 {
+  grid-template-columns: 1fr 90px 90px;
+}
+.grid-container3 {
+  grid-template-columns: 1fr;
+}
+.button1, .button2, .button3, .button4, .button5 {
+  position: relative;
+  font-weight: bold;
+  border: none;
+  color: black;
+  padding: 1px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.button1 { /* black buttons in header */
+  background-color: #4d4d4d;
+  color: white;
+}
+.button1:hover {
+  filter: brightness(85%);
+}  
+.button1.test {min-width: 60px; color: yellow;}
+.button1.bind {color: #62d7ff}
+.button2 { /* cancel button for large modules and white buttons in header */
+  background-color: white;
+}
+.button2:hover {
+  filter: brightness(92%);
+}
+.button2.hp {min-width:92px;}
+.button2.systems {padding: 0px 0px; min-width:30px; height: 18px; font-size: 8px;}
+.button3 { /* blend into background button for large modules */
+  background-color: transparent;
+  pointer-events: none;
+}
+.button4 { /* cancel button for small modules */
+  background-color: white;
+  padding: 7px 16px;
+  z-index: 1;
+  pointer-events: all;
+}
+.button4:hover {
+  filter: brightness(92%);
+}
+.button5 { /* blend into background button for small modules */
+  background-color: transparent;
+  padding: 7px 16px;
+  pointer-events: none;
+}
+.graphics {
+  background-color:#9a9a9a;
+  position: relative;
+  margin:auto; 
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding: 10px 0px;
+  min-width: 418px;
+  max-width: 806px; 
+  background-size: 650px;
+  background-image: url("images/kaloshimself.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}
+.systemdots{
+  border-radius: 10px;
+  background: black;
+  height: 10px;
+  width: 10px;
+  padding: 0px 0px;
+  margin-left: 3px;
+  display: inline-block;
+}
+.info{
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 0px;
+  font-size: 11px;
+  background: #F9C3C3;
+  display: block;
+  padding: 3px 12px;
+  border-radius: 3px; 
+  cursor: pointer;
+  z-index: 999;
+}
+.info:hover{
+  filter: brightness(110%);
+}
+.collapsible{
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 22px;
+  max-width: 269px;
+  font-size: 12;
+  background: #F9C3C3;
+  display: none;
+  padding: 0px 15px; 
+  z-index: 999;
+  border-radius: 3px;
+}
+.updown-container{
+  display: inline-block;
+  width: 30px;
+  vertical-align: middle;
+}
+.fma-timer-edit, .system-timer-edit{
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 0px;
+  font-size: 14px;
+  color: black;
+  display: block;
+  padding: 1px 4px;
+  cursor: pointer;
+  z-index: 999;
+  border-left: none;
+  border: none;
+  opacity: 75%; 
+}
