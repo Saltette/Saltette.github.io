@@ -1,4 +1,4 @@
-const warningBomb = 3;
+
 const warningBreath = 10;
 const warningDive = 5;
 const warningFMA = 30;
@@ -13,7 +13,6 @@ const maxPhase = 4;
 const minPhase = 1;
 
 const systemCooldown = 60;
-const bombCooldown = 10;
 const diveCooldown = 20;
 const fmaCooldown = 150;
 const breath1Cooldown = 60;
@@ -27,12 +26,11 @@ const groggyDuration = 20;
 const testDuration = 50;
 const bind10Sec = 10;
 const bind15Sec = 15;
-const editDisplaySec = 2;
-const bindClickLockout = 2;
+const editDisplaySec = 1;
+const bindClickLockout = 1;
 
 var phase = minPhase;
 
-var bombCountdown;
 var breathCountdown;
 var diveCountdown;
 var fmaCountdown;
@@ -43,7 +41,6 @@ var arrowsCountdown;
 var fmaEditCountdown;
 var systemEditCountdown;
 
-var bombSec;
 var breathSec;
 var diveSec;
 var fmaSec = fmaCooldown;
@@ -132,7 +129,6 @@ function startPhase() {
     bindSec = 0;
     clearInterval(bindCountdown);
     changePhase(1);
-    bombTimer();
     clearInterval(breathCountdown);
     breathSec = 0;
     document.getElementById('breathTimer').innerHTML = breathSec;
@@ -146,14 +142,12 @@ function startPhase() {
     
     
 
-    checkWarningBomb();
     checkWarningBreath();
     checkWarningDive();
     checkWarningFMA();
     checkWarningNumSystems();
     checkWarningSystemFail();
-    testIndicator();
-    bindIndicator();
+    kalosIndicator();
     systemIndicator();
 }
 
@@ -196,18 +190,18 @@ function phaseTest(){
         if (bindSec > 0) {
             clearInterval(bindCountdown);
             bindSec = 0;
-            bindIndicator();
+            kalosIndicator();
         }
         phaseSec = testDuration;
 
-        testIndicator();
+        kalosIndicator();
         clearInterval(phaseCountdown);
         phaseCountdown = setInterval(function(){
             phaseSec--;
             if (phaseSec <= 0) {
                 clearInterval(phaseCountdown);
             }
-            testIndicator();
+            kalosIndicator();
         }, 1000);
             
         if (fmaTimerOn == true) {
@@ -281,7 +275,7 @@ function failTest() {
         }
         clearInterval(phaseCountdown);
         phaseSec = 0;
-        testIndicator();
+        kalosIndicator();
     }
 }
 
@@ -298,33 +292,52 @@ function systemEditTimer() {
     }, 1000);
 }
 
-function testIndicator() {
-    if (phaseSec > groggyDuration) {
+function kalosIndicator() {
+    if (phaseSec > groggyDuration && bindClickLockoutSec > 0) {
+        document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png'), url('images/kalostest.png')";
+        document.getElementById('testBox').style.color = 'yellow';
+        document.getElementById('bindBox').style.color = '#62d7ff';
+    }
+    if (phaseSec > groggyDuration && bindClickLockoutSec == 0) {
         document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png'), url('images/kalostest.png')";
         document.getElementById('testBox').style.color = 'yellow';
+        document.getElementById('bindBox').style.color = 'black';
     }
-    else if (phaseSec > 0) {
+    if (groggyDuration > phaseSec > 0 && bindClickLockoutSec > 0) {
+        document.getElementById('phase').style.backgroundImage = "url('images/kalosbind.png'), url('images/kalosxeyes.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
+        document.getElementById('testBox').style.color = 'yellow';
+        document.getElementById('bindBox').style.color = '#62d7ff';
+    }
+    if (groggyDuration > phaseSec > 0 && bindClickLockoutSec == 0) {
         document.getElementById('phase').style.backgroundImage = "url('images/kalosxeyes.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
         document.getElementById('testBox').style.color = 'yellow';
-    } else {
+        document.getElementById('bindBox').style.color = 'black';
+    }
+    if (phaseSec == 0 && bindClickLockoutSec > 0) {
+        document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png')";
+        document.getElementById('testBox').style.color = 'black';
+        document.getElementById('bindBox').style.color = '#62d7ff';
+    }
+    if (phaseSec == 0 && bindClickLockoutSec == 0) {
         document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png')";
         document.getElementById('testBox').style.color = 'black';
+        document.getElementById('bindBox').style.color = 'black';
     }
 }
 
 function bind(sec){
-    if (bindClickLockoutSec <= 0 && phaseSec <= 0) {
+    if (bindClickLockoutSec <= 0) {
         bindClickLockoutTimer();
         extraBindTime = bindSec; //this is in case bind is used during a previous bind duration
         bindSec = sec + extraBindTime;
-        bindIndicator();
+        kalosIndicator();
         clearInterval(bindCountdown);
         bindCountdown = setInterval(function(){
             bindSec--;
             if (bindSec <= 0) {
                 clearInterval(bindCountdown);
             }
-            bindIndicator();
+            kalosIndicator();
         }, 1000);
         if (fmaTimerOn == true) {
             fmaTimerEdit = '+' + sec;
@@ -364,18 +377,6 @@ function bindClickLockoutTimer() {
     }, 1000);
 }
 
-function bindIndicator() {
-    if (bindSec > 0) {
-        document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png')";
-        document.getElementById('bindBox').style.color = '#62d7ff';
-    } else {
-        document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png')";
-        document.getElementById('bindBox').style.color = 'black';
-        
-    }
-}
-
-
 
 
 function systemIndicator() {
@@ -406,42 +407,6 @@ function systemIndicator() {
 
 
 
-
-
-
-
-
-
-
-function checkWarningBomb() {
-    if (bombSec <= warningBomb) {
-        document.getElementById("bombTimer").style.color = 'red';
-    }
-    else {
-        document.getElementById("bombTimer").style.color = 'black';
-    }
-}
-function bombTimer(){
-    bindIndicator();
-    bombSec = bombCooldown;
-    document.getElementById('bombTimer').innerHTML = bombSec;
-    checkWarningBomb();
-    clearInterval(bombCountdown);
-    bombCountdown = setInterval(function(){
-        bombSec--;
-        document.getElementById('bombTimer').innerHTML = bombSec;
-        checkWarningBomb();
-        if (bombSec <= 0) {
-            bombSec = bombCooldown;
-        }
-    }, 1000);
-}
-function bombCancel(){
-    bombSec = bombCooldown;
-    document.getElementById('bombTimer').innerHTML = "--";
-    checkWarningBomb();
-    clearInterval(bombCountdown);
-}
 
 
 
