@@ -112,6 +112,8 @@ function changePhase(num) {
 }
 
 function startPhase() {
+    lasersCancel();
+    arrowsCancel();
     fmaTimerEdit = '';
     systemTimerEdit = '';
     fmaEditSec = 0;
