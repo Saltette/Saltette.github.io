@@ -348,7 +348,8 @@ function bind(sec){
             fmaEditTimer();
 
             clearInterval(fmaCountdown);
-            fmaSec += sec;
+            fmaSec += sec-1;
+            //sec-1 instead of sec because the countdowns are reset to the top of the second every bind right now. multiple binds make fma later than it seems. if timer gets more precise, remove "-1"
             fmaTimer(fmaSec);
             checkWarningFMA();
         }
