@@ -8,9 +8,9 @@ If this is your first time using this timer, it's recommended to only use P2 Sta
 
 Press the "P2 Start" button once the cutscene of the dog turns completely black, phasing into p2 of Kalos.
 
-Black buttons, Cleanse, FMA, Breath, Dive, Lasers, and Arrows should be pressed when they occur.
+Gray buttons should be pressed when they occur.
 
-Ideally, white buttons are never pressed. They are to adjust for timings, phase, and number of systems in case of misclicks by the timer.
+Ideally, white buttons are never pressed. They are to adjust for timings, phase, and number of systems in case of misclicks.
 
 Binds affect FMA timer. Test Start and Fail affect FMA timer and systems timer. FMA may affect systems timer. HP % affects breath timer.
 
