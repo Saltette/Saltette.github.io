@@ -1,27 +1,35 @@
-
-body {margin: 0px 10px; background-color: #4d4d4d; font-family: Arial, Helvetica, sans-serif;}
-h1 {text-align: center; font-size: 36; font-family:'Times New Roman', Times, serif;}
+/*
+#ff2b2b = red
+#4d4d4d = black
+#ccc = gray
+#f2f2f2 = white
+#F9C3C3 = pink
+#62d7ff = blue
+yellow = yellow
+*/
+body {margin: 0px 10px; background-color: #4d4d4d; font-family: Arial, Helvetica, sans-serif; color: #4d4d4d;}
+h1 {text-align: center; font-size: 36; font-family: Arial, Helvetica, sans-serif;}
 div {text-align: center; user-select: none;}
 p {text-align: center; font-size: 12; font-weight:bold; margin-top: 11px; margin-bottom: 11px;}
 p.left {text-align:left;}
 p.text {font-weight: normal;}
 p.start {
-  margin-top:15px;
+  margin-top: 15px;
   margin-bottom: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
-  color: #F9C3C3;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 .counter {
   display: block;
   font-size: 42px;
   margin-top: 0px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   margin-left: 0px;
   margin-right: 0px;
-  padding: 10px 0px;
+  color: #4d4d4d;
+  padding: 8px 0px;
   font-weight: bold;
-  font-family:'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .module-overlay-float{
   position: absolute;
@@ -38,33 +46,33 @@ p.start {
   display: block; 
   align-items: center; 
   justify-content: center;
-  padding: 10px 0px; 
+  padding: 6px 0px; 
   cursor: pointer;
   background-color: #ccc;
-  border-radius: 3px;
+  border-radius: 12px;
 }
 .item1-background-cover {
   position: absolute;
-  border: 3px solid black; 
+  border: 3px solid #4d4d4d; 
   top: -3;
   left: -3;
   height: 100%;
   width: 100%;
   opacity: 0%;
-  background-color: black;
-  border-radius: 3px;
+  background-color: #4d4d4d;
+  border-radius: 12px;
 }
 .item1-background-cover:hover {
-  opacity: 8%;
+  opacity: 10%;
 }
 .grid-container1, .grid-container2, .grid-container3{
   margin: auto; 
-  padding-top: 0px;
-  padding-bottom: 10px;
+  padding-top: 4px;
+  padding-bottom: 12px;
   min-width: 418px;
-  max-width: 806px; 
+  max-width: 576px; 
   display: grid; 
-  grid-gap: 10px; 
+  grid-gap: 6px; 
 }
 .grid-container1 {
   grid-template-columns: 1fr 1fr;
@@ -79,103 +87,135 @@ p.start {
   position: relative;
   font-weight: bold;
   border: none;
-  color: black;
+  color: #4d4d4d;
   padding: 1px 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
-  border-radius: 3px;
+  border: 2px solid #4d4d4d;
+  border-radius: 6px;
   cursor: pointer;
 }
 .button1 { /* black buttons in header */
-  background-color: #4d4d4d;
-  color: white;
+  background-color: #ccc;
 }
 .button1:hover {
-  filter: brightness(85%);
+  filter: brightness(90%);
 }  
-.button1.test {min-width: 60px; color: yellow;}
-.button1.bind {color: #62d7ff}
+.button1.test {min-width: 80px; border-color: yellow;}
+.button1.bind {border-color: #62d7ff}
+.button1.start {border-color: #F9C3C3; border-width: 3px; background-color:#F9C3C3;}
 .button2 { /* cancel button for large modules and white buttons in header */
-  background-color: white;
+  background-color: #f2f2f2;
 }
 .button2:hover {
-  filter: brightness(92%);
+  filter: brightness(90%);
 }
 .button2.hp {min-width:92px;}
 .button2.systems {padding: 0px 0px; min-width:30px; height: 18px; font-size: 8px;}
 .button3 { /* blend into background button for large modules */
   background-color: transparent;
+  border: 0px;
   pointer-events: none;
 }
 .button4 { /* cancel button for small modules */
-  background-color: white;
+  background-color: #f2f2f2;
   padding: 7px 16px;
   z-index: 1;
   pointer-events: all;
 }
 .button4:hover {
-  filter: brightness(92%);
+  filter: brightness(90%);
 }
 .button5 { /* blend into background button for small modules */
   background-color: transparent;
+  border: 0px;
   padding: 7px 16px;
   pointer-events: none;
 }
 .graphics {
-  background-color:#9a9a9a;
+  background-color:#f2f2f2;
   position: relative;
   margin:auto; 
   margin-top: 25px;
   margin-bottom: 10px;
   padding: 10px 0px;
-  min-width: 418px;
-  max-width: 806px; 
+  min-width: 696px;
+  max-width: 696px; 
   background-size: 650px;
   background-image: url("images/kaloshimself.png");
-  background-position: bottom right;
+  background-position: top right;
+
   background-repeat: no-repeat;
-  border-radius: 3px;
+
+  border-radius: 12px;
 }
 .systemdots{
   border-radius: 10px;
-  background: black;
+  background: #4d4d4d;
   height: 10px;
   width: 10px;
   padding: 0px 0px;
   margin-left: 3px;
   display: inline-block;
 }
-.info{
+.difficulty{
   font-weight: bold;
   position: absolute;
   right: 0;
-  margin-right: 10px;
-  margin-top: 0px;
-  font-size: 11px;
+  top: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  background: #f2f2f2;
+  border: 3px solid #4d4d4d;
+  display: block;
+  padding: 6px 12px;
+  border-radius: 60px; 
+  cursor: pointer;
+  z-index: 999;
+}
+.difficulty-button{
+  font-weight: bold;
+
+}
+.info{
+  font-weight: bold;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 12px;
   background: #F9C3C3;
   display: block;
-  padding: 3px 12px;
-  border-radius: 3px; 
+  padding: 6px 12px;
+  border-radius: 60px; 
   cursor: pointer;
   z-index: 999;
 }
 .info:hover{
-  filter: brightness(110%);
+  filter: brightness(120%);
 }
 .collapsible{
-  position: absolute;
+  position: fixed;
+  bottom: 0;
   right: 0;
-  margin-right: 10px;
-  margin-top: 22px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 56px;
   max-width: 269px;
   font-size: 12;
   background: #F9C3C3;
   display: none;
   padding: 0px 15px; 
   z-index: 999;
-  border-radius: 3px;
+  border-radius: 12px;
 }
 .updown-container{
   display: inline-block;
@@ -186,11 +226,12 @@ p.start {
   font-weight: bold;
   position: absolute;
   left: 0;
+  top: 0;
   margin-right: 10px;
   margin-left: 10px;
-  margin-top: 0px;
+  margin-top: 10px;
   font-size: 14px;
-  color: black;
+  color: #4d4d4d;
   display: block;
   padding: 1px 4px;
   cursor: pointer;

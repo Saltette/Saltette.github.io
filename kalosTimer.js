@@ -65,6 +65,7 @@ var systemTimerEdit = '';
 var visibleInfo = false;
 
 var fmaTimerOn = false;
+var systemTimerOn = false;
 
 var bindClickLockoutSec;
 var bindClickLockoutCountdown;
@@ -89,24 +90,32 @@ function toggleInfo() {
 function changePhase(num) {
     phase = num;
     if (phase == 1) {
-        document.getElementById('phase1Button').style.background='#bbb';
+        document.getElementById('phase1Button').style.borderColor='#ccc';
+        document.getElementById('phase1Button').style.color='#ccc';
     } else {
-        document.getElementById('phase1Button').style.background='white';
+        document.getElementById('phase1Button').style.borderColor='4d4d4d';
+        document.getElementById('phase1Button').style.color='4d4d4d';
     }
     if (phase == 2) {
-        document.getElementById('phase2Button').style.background='#bbb';
+        document.getElementById('phase2Button').style.borderColor='#ccc';
+        document.getElementById('phase2Button').style.color='#ccc';
     } else {
-        document.getElementById('phase2Button').style.background='white';
+        document.getElementById('phase2Button').style.borderColor='4d4d4d';
+        document.getElementById('phase2Button').style.color='4d4d4d';
     }
     if (phase == 3) {
-        document.getElementById('phase3Button').style.background='#bbb';
+        document.getElementById('phase3Button').style.borderColor='#ccc';
+        document.getElementById('phase3Button').style.color='#ccc';
     } else {
-        document.getElementById('phase3Button').style.background='white';
+        document.getElementById('phase3Button').style.borderColor='4d4d4d';
+        document.getElementById('phase3Button').style.color='4d4d4d';
     }
     if (phase == 4) {
-        document.getElementById('phase4Button').style.background='#bbb';
+        document.getElementById('phase4Button').style.borderColor='#ccc';
+        document.getElementById('phase4Button').style.color='#ccc';
     } else {
-        document.getElementById('phase4Button').style.background='white';
+        document.getElementById('phase4Button').style.borderColor='4d4d4d';
+        document.getElementById('phase4Button').style.color='4d4d4d';
     }
     
 }
@@ -125,6 +134,7 @@ function startPhase() {
     bindClickLockoutSec = 0;
     clearInterval(bindClickLockoutCountdown);
     fmaTimerOn = true;
+    systemTimerOn = true;
     numSystemsOnline = 0;
     phaseSec = 0;
     clearInterval(phaseCountdown);
@@ -140,7 +150,7 @@ function startPhase() {
     fmaTimer(fmaCooldown);
     systemFailTimer(systemCooldown);
     numSystemsOnline = minSystems;
-    document.getElementById('systemsOnline').innerHTML = numSystemsOnline;
+    document.getElementById('systemsOnline').innerHTML = numSystemsOnline;``
     
     
 
@@ -175,15 +185,15 @@ function decSystems () {
 
 function checkWarningNumSystems () {
     if (numSystemsOnline == maxSystems) {
-        //document.getElementById("systemsOnline").style.color = 'red';
-        document.getElementById("systemFailTimer").style.color = 'red';
+        //document.getElementById("systemsOnline").style.color = '#ff2b2b';
+        document.getElementById("systemFailTimer").style.color = '#ff2b2b';
     } else {
-        //document.getElementById("systemsOnline").style.color = 'black';
+        //document.getElementById("systemsOnline").style.color = '#4d4d4d';
     }
 }
 
 function phaseTest(){
-    if (phaseSec <= groggyDuration) {
+    if (phaseSec <= groggyDuration && systemTimerOn == true) {
         // if phased during groggy, fma and system time will be reduced by the timing delay lost from not using all of the last groggy
         // i have no confirmed video of this mechanic and am assuming this is how it works for now
         var lostGroggyTime = phaseSec;
@@ -295,35 +305,35 @@ function systemEditTimer() {
 }
 
 function kalosIndicator() {
-    if (phaseSec > groggyDuration && bindClickLockoutSec > 0) {
+    if (phaseSec > groggyDuration && bindClickLockoutSec > 0) { //kalos bind and testing
         document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png'), url('images/kalostest.png')";
         document.getElementById('testBox').style.color = 'yellow';
         document.getElementById('bindBox').style.color = '#62d7ff';
     }
-    if (phaseSec > groggyDuration && bindClickLockoutSec == 0) {
+    if (phaseSec > groggyDuration && bindClickLockoutSec == 0) { //kalos testing
         document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png'), url('images/kalosplatforms.png'), url('images/kalostest.png')";
         document.getElementById('testBox').style.color = 'yellow';
-        document.getElementById('bindBox').style.color = 'black';
+        document.getElementById('bindBox').style.color = '#4d4d4d';
     }
-    if (groggyDuration > phaseSec > 0 && bindClickLockoutSec > 0) {
+    if (groggyDuration > phaseSec > 0 && bindClickLockoutSec > 0) { //kalos bind and groggy
         document.getElementById('phase').style.backgroundImage = "url('images/kalosbind.png'), url('images/kalosxeyes.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
         document.getElementById('testBox').style.color = 'yellow';
         document.getElementById('bindBox').style.color = '#62d7ff';
     }
-    if (groggyDuration > phaseSec > 0 && bindClickLockoutSec == 0) {
+    if (groggyDuration > phaseSec > 0 && bindClickLockoutSec == 0) { //kalos groggy
         document.getElementById('phase').style.backgroundImage = "url('images/kalosxeyes.png'), url('images/kaloshimself.png'), url('images/kalosplatforms.png')";
         document.getElementById('testBox').style.color = 'yellow';
-        document.getElementById('bindBox').style.color = 'black';
+        document.getElementById('bindBox').style.color = '#4d4d4d';
     }
-    if (phaseSec == 0 && bindClickLockoutSec > 0) {
+    if (phaseSec == 0 && bindClickLockoutSec > 0) { //kalos bind
         document.getElementById('phase').style.backgroundImage = " url('images/kalosbind.png'), url('images/kaloshimself.png')";
-        document.getElementById('testBox').style.color = 'black';
+        document.getElementById('testBox').style.color = '#4d4d4d';
         document.getElementById('bindBox').style.color = '#62d7ff';
     }
-    if (phaseSec == 0 && bindClickLockoutSec == 0) {
+    if (phaseSec == 0 && bindClickLockoutSec == 0) { //just kalos
         document.getElementById('phase').style.backgroundImage = "url('images/kaloshimself.png')";
-        document.getElementById('testBox').style.color = 'black';
-        document.getElementById('bindBox').style.color = 'black';
+        document.getElementById('testBox').style.color = '#4d4d4d';
+        document.getElementById('bindBox').style.color = '#4d4d4d';
     }
 }
 
@@ -384,24 +394,24 @@ function bindClickLockoutTimer() {
 
 function systemIndicator() {
     if (numSystemsOnline >= 1) {
-        document.getElementById('system1').style.background = 'red';
+        document.getElementById('system1').style.background = '#ff2b2b';
     } else {
-        document.getElementById('system1').style.background = 'black';
+        document.getElementById('system1').style.background = '#4d4d4d';
     }
     if (numSystemsOnline >= 2) {
-        document.getElementById('system2').style.background = 'red';
+        document.getElementById('system2').style.background = '#ff2b2b';
     } else {
-        document.getElementById('system2').style.background = 'black';
+        document.getElementById('system2').style.background = '#4d4d4d';
     }
     if (numSystemsOnline >= 3) {
-        document.getElementById('system3').style.background = 'red';
+        document.getElementById('system3').style.background = '#ff2b2b';
     } else {
-        document.getElementById('system3').style.background = 'black';
+        document.getElementById('system3').style.background = '#4d4d4d';
     }
     if (numSystemsOnline >= 4) {
-        document.getElementById('system4').style.background = 'red';
+        document.getElementById('system4').style.background = '#ff2b2b';
     } else {
-        document.getElementById('system4').style.background = 'black';
+        document.getElementById('system4').style.background = '#4d4d4d';
     }
 }
 
@@ -422,11 +432,11 @@ function systemIndicator() {
 
 function checkWarningBreath() {
     if (breathSec <= warningBreath) {
-        document.getElementById("breathTimer").style.color = 'red';
-        document.getElementById("breathBox").style.border = '3px solid red';
+        document.getElementById("breathTimer").style.color = '#ff2b2b';
+        document.getElementById("breathBox").style.border = '3px solid #ff2b2b';
     }
     else {
-        document.getElementById("breathTimer").style.color = 'black';
+        document.getElementById("breathTimer").style.color = '#4d4d4d';
         document.getElementById("breathBox").style.border = '3px solid transparent';
     }
 }
@@ -471,10 +481,10 @@ function breathCancel() {
 
 function checkWarningDive() {
     if (diveSec <= warningDive) {
-        document.getElementById("diveTimer").style.color = 'red';
-        document.getElementById("diveBox").style.border = '3px solid red';
+        document.getElementById("diveTimer").style.color = '#ff2b2b';
+        document.getElementById("diveBox").style.border = '3px solid #ff2b2b';
     } else {
-        document.getElementById("diveTimer").style.color = 'black';
+        document.getElementById("diveTimer").style.color = '#4d4d4d';
         document.getElementById("diveBox").style.border = '3px solid transparent';
     }
 }
@@ -512,12 +522,12 @@ function diveTimer() {
 
 function checkWarningFMA() {
     if (fmaSec <= warningFMA) {
-        document.getElementById("fmaTimer").style.color = 'red';
-        document.getElementById("fmaBox").style.border = '3px solid red';
+        document.getElementById("fmaTimer").style.color = '#ff2b2b';
+        document.getElementById("fmaBox").style.border = '3px solid #ff2b2b';
         document.getElementById("fmaBox").style.background = '#F9C3C3';
     }
     else {
-        document.getElementById("fmaTimer").style.color = 'black';
+        document.getElementById("fmaTimer").style.color = '#4d4d4d';
         document.getElementById("fmaBox").style.border = '3px solid transparent';
         document.getElementById("fmaBox").style.background = '#ccc';
     }
@@ -560,9 +570,9 @@ function fmaAttack() {
 function checkWarningSystemFail() {
     
     if (numSystemsOnline == maxSystems) {
-    document.getElementById("systemFailTimer").style.color = 'red';
+    document.getElementById("systemFailTimer").style.color = '#ff2b2b';
         if (systemFailSec <= warningSystemFail) {
-            document.getElementById("systemFailBox").style.border = '3px solid red';
+            document.getElementById("systemFailBox").style.border = '3px solid #ff2b2b';
             document.getElementById("systemFailBox").style.background = '#F9C3C3';
         }
         else {
@@ -570,7 +580,7 @@ function checkWarningSystemFail() {
             document.getElementById("systemFailBox").style.background = '#ccc';
         }
     } else {
-        document.getElementById("systemFailTimer").style.color = 'black';
+        document.getElementById("systemFailTimer").style.color = '#4d4d4d';
         document.getElementById("systemFailBox").style.border = '3px solid transparent';
         document.getElementById("systemFailBox").style.background = '#ccc';
     }
@@ -616,11 +626,11 @@ function systemCleanse() {
 
 function checkWarningLasers() {
     if (lasersSec <= warningLasers) {
-        document.getElementById("lasersTimer").style.color = 'red';
-        //document.getElementById("lasersBox").style.border = '3px solid red';
+        document.getElementById("lasersTimer").style.color = '#ff2b2b';
+        //document.getElementById("lasersBox").style.border = '3px solid #ff2b2b';
     }
     else {
-        document.getElementById("lasersTimer").style.color = 'black';
+        document.getElementById("lasersTimer").style.color = '#4d4d4d';
         //document.getElementById("lasersBox").style.border = '3px solid transparent';
     }
 }
@@ -647,11 +657,11 @@ function lasersCancel(){
 
 function checkWarningArrows() {
     if (arrowsSec <= warningArrows) {
-        document.getElementById("arrowsTimer").style.color = 'red';
-        //document.getElementById("arrowsBox").style.border = '3px solid red';
+        document.getElementById("arrowsTimer").style.color = '#ff2b2b';
+        //document.getElementById("arrowsBox").style.border = '3px solid #ff2b2b';
     }
     else {
-        document.getElementById("arrowsTimer").style.color = 'black';
+        document.getElementById("arrowsTimer").style.color = '#4d4d4d';
         //document.getElementById("arrowsBox").style.border = '3px solid transparent';
     }
 }

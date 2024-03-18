@@ -1,29 +1,38 @@
 
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script src="kalosTimer.js"></script>
+
+<div class="info" onclick="toggleInfo()">
+  how to use
+</div>
+<div class="collapsible" id="infoText">
+  <p class="left text"><b>If this is your first time using this timer, it's recommended to only use P2 Start, Binds, Test, Cleanse, FMA buttons to time systems and FMA with everything else cancelled.</b></p>
+
+  <p class="left text">Press the "P2 Start" button once the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
+  
+  <p class="left text">Gray buttons should be pressed when they occur.</p>
+
+  <p class="left text">Ideally, white buttons are never pressed. They're to adjust timings, phase, and number of systems in case of misclicks.</p>
+
+  <p class="left text" style="font-size: 10">Binds affect FMA timer. Test Start and Fail affect FMA timer and systems timer. FMA may affect systems timer. HP % affects breath timer.</p>
+
+  <p class="left text" style="font-size: 10">Lasers and Arrows timers will loop automatically.</p>
+
+  <p class="left text" style="font-size: 10">Message 'saltette' on Discord for questions or bug reports.</p>
+</div>
+
+
+
+
 <div class="graphics" id="phase">
-  <div class="info" onclick="toggleInfo()">
-    how to use
-  </div>
-  <div class="collapsible" id="infoText">
-    <p class="left text"><b>If this is your first time using this timer, it's recommended to only use P2 Start, Binds, Test, Cleanse, FMA buttons to time systems and FMA with everything else cancelled.</b></p>
 
-    <p class="left text">Press the "P2 Start" button once the cutscene of the dog turns completely black, phasing into p2 of Kalos.</p>
-    
-    <p class="left text">Black buttons, Cleanse, FMA, Breath, Dive, Lasers, and Arrows should be pressed when they occur.</p>
+  <div class="difficulty">
 
-    <p class="left text">Ideally, white buttons are never pressed. They're to adjust timings, phase, and number of systems in case of misclicks by the timer.</p>
-
-    <p class="left text" style="font-size: 10">Binds affect FMA timer. Test Start and Fail affect FMA timer and systems timer. FMA may affect systems timer. HP % affects breath timer.</p>
-
-    <p class="left text" style="font-size: 10">Lasers and Arrows timers will loop automatically.</p>
-
-    <p class="left text" style="font-size: 10">Message 'saltette' on Discord for questions or bug reports. If you have a video of phasing Kalos during groggy, please send it.</p>
   </div>
   <h1 id="headline">
     P2 Kalos Timer
   </h1>
-  <button class="button1" onclick="startPhase(3)">
+  <button class="button1 start" onclick="startPhase(3)">
     <p class="start">P2 Start</p>
   </button>
   <p class="left" style="margin-left: 20px; margin-right: 20px; font-size: 12px;">
@@ -53,7 +62,7 @@
       </button>
     </span>
   </p>
-  <p class="left" id="bindBox" style="margin-left: 20px; margin-right: 20px; font-size: 12px;">
+  <p class="left" id="bindBox" style="margin-left: 20px; margin-right: 20px; font-size: 12px; border-left: 3px solid #62d7ff; padding-left: 8px">
     Bind
     <button class="button1 bind" onclick="bind(15)" style="margin-left: 8px;">
       <p>15 seconds</p>
@@ -62,7 +71,7 @@
       <p>10 seconds</p>
     </button>
   </p>
-  <p class="left" id="testBox" style="margin-left: 20px; margin-right: 20px; font-size: 12px;">
+  <p class="left" id="testBox" style="margin-left: 20px; margin-right: 20px; font-size: 12px; border-left: 3px solid yellow; padding-left: 8px">
     Test 
     <button class="button1 test" onclick="phaseTest()" style="margin-left: 8px;">
       <p>Start</p>
@@ -71,88 +80,89 @@
       <p>Fail</p>
     </button>
   </p>
-</div>
 
-<div class="grid-container2">
-  <div class="item1" id="systemFailBox" onclick="systemCleanse()">
-    <div class="item1-background-cover"></div>
-    <div class="system-timer-edit" id="system-edit"></div>
-    <div class="counter" id="systemFailTimer">--</div>
-    <div class="systemdots" id="system1"></div>
-    <div class="systemdots" id="system2"></div>
-    <div class="systemdots" id="system3"></div>
-    <div class="systemdots" id="system4"></div>
-    <button id="cleanseButton" class="button3">
-      <p>Cleanse</p>
-    </button> 
-    <button class="button2" onclick="systemFailTimer(60); event.stopPropagation()">
-      <div class="button-cover"></div>
-      <p>Reset</p>
-    </button>
-  </div>
-  <div class="item1" id="lasersBox" onclick="lasersTimer()">
-    <div class="item1-background-cover"></div>
-    <div class="counter" id="lasersTimer" style="font-size: 31px;">--</div>
-    <div class="module-overlay-float">
-      <button class="button5" style="margin-bottom:4px">
-        Lasers
-      </button>
-      <button class="button4" onclick="lasersCancel(); event.stopPropagation()">
-        Cancel
+  <div class="grid-container2">
+    <div class="item1" id="systemFailBox" onclick="systemCleanse()">
+      <div class="item1-background-cover"></div>
+      <div class="system-timer-edit" id="system-edit"></div>
+      <div class="counter" id="systemFailTimer">--</div>
+      <div class="systemdots" id="system1"></div>
+      <div class="systemdots" id="system2"></div>
+      <div class="systemdots" id="system3"></div>
+      <div class="systemdots" id="system4"></div>
+      <button id="cleanseButton" class="button3">
+        <p>Cleanse</p>
+      </button> 
+      <button class="button2" onclick="systemFailTimer(60); event.stopPropagation()">
+        <div class="button-cover"></div>
+        <p>Reset</p>
       </button>
     </div>
-  </div>
-  <div class="item1" id="arrowsBox" onclick="arrowsTimer()">
-    <div class="item1-background-cover"></div>
-    <div class="counter" id="arrowsTimer" style="font-size: 31px;">--</div>
-    <div class="module-overlay-float">
-      <button class="button5" style="margin-bottom:4px">
-        Arrows
-      </button>
-      <button class="button4" onclick="arrowsCancel(); event.stopPropagation()">
-        Cancel
-      </button>
-    </div>
-  </div>
-</div>
-<div class="grid-container3">
-  <div class="item1" id="fmaBox" onclick="fmaAttack()">
-    <div class="item1-background-cover"></div>
-    <div class="fma-timer-edit" id="fma-edit"></div>
-    <div class="counter" id="fmaTimer">--</div>
-      <div>
-        <button id="fmaButton" class="button3">
-          <p>FMA</p>
+    <div class="item1" id="lasersBox" onclick="lasersTimer()">
+      <div class="item1-background-cover"></div>
+      <div class="counter" id="lasersTimer" style="font-size: 31px;">--</div>
+      <div class="module-overlay-float">
+        <button class="button5" style="margin-bottom:4px">
+          Lasers
         </button>
-        <button class="button2" onclick="fmaCancel(); event.stopPropagation()">
+        <button class="button4" onclick="lasersCancel(); event.stopPropagation()">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div class="item1" id="arrowsBox" onclick="arrowsTimer()">
+      <div class="item1-background-cover"></div>
+      <div class="counter" id="arrowsTimer" style="font-size: 31px;">--</div>
+      <div class="module-overlay-float">
+        <button class="button5" style="margin-bottom:4px">
+          Arrows
+        </button>
+        <button class="button4" onclick="arrowsCancel(); event.stopPropagation()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="grid-container3">
+    <div class="item1" id="fmaBox" onclick="fmaAttack()">
+      <div class="item1-background-cover"></div>
+      <div class="fma-timer-edit" id="fma-edit"></div>
+      <div class="counter" id="fmaTimer">--</div>
+        <div>
+          <button id="fmaButton" class="button3">
+            <p>FMA</p>
+          </button>
+          <button class="button2" onclick="fmaCancel(); event.stopPropagation()">
+            <p>Cancel</p>
+          </button>
+        </div>
+    </div>
+  </div>
+  <div class="grid-container1">
+    <div class="item1" id="breathBox" onclick="breathTimer()">
+      <div class="item1-background-cover"></div>
+      <div class="counter" id="breathTimer">--</div>
+      <div>
+        <button class="button3">
+          <p>Breath</p>
+        </button>
+        <button class="button2" onclick="breathCancel(); event.stopPropagation()">
           <p>Cancel</p>
         </button>
       </div>
-  </div>
-</div>
-<div class="grid-container1">
-  <div class="item1" id="breathBox" onclick="breathTimer()">
-    <div class="item1-background-cover"></div>
-    <div class="counter" id="breathTimer">--</div>
-    <div>
-      <button class="button3">
-        <p>Breath</p>
-      </button>
-      <button class="button2" onclick="breathCancel(); event.stopPropagation()">
-        <p>Cancel</p>
-      </button>
+    </div>
+    <div class="item1" id="diveBox" onclick="diveTimer()">
+      <div class="item1-background-cover"></div>
+      <div class="counter" id="diveTimer">--</div>
+      <div>
+        <button class="button3">
+          <p>Dive</p>
+        </button>
+        <button class="button2" onclick="diveCancel(); event.stopPropagation()">
+          <p>Cancel</p>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="item1" id="diveBox" onclick="diveTimer()">
-    <div class="item1-background-cover"></div>
-    <div class="counter" id="diveTimer">--</div>
-    <div>
-      <button class="button3">
-        <p>Dive</p>
-      </button>
-      <button class="button2" onclick="diveCancel(); event.stopPropagation()">
-        <p>Cancel</p>
-      </button>
-    </div>
-  </div>
+  
 </div>
