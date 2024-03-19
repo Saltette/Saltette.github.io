@@ -76,6 +76,7 @@ p.start {
 }
 .grid-container1 {
   grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
 }
 .grid-container2 {
   grid-template-columns: 1fr 90px 90px;
